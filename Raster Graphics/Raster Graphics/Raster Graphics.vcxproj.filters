@@ -21,9 +21,18 @@
     <ClCompile Include="String\Source\String.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PolymorphicVector\PolymorphicVector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="String\String.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Interfaces\ICloneable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PolymorphicVector\PolymorphicVector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
