@@ -1,9 +1,9 @@
 #include "../OutOfBoundsException.h"
 
-OutOfBoundsException::OutOfBoundsException(std::string_view message)
+OutOfBoundsException::OutOfBoundsException(const std::string& message)
 	: m_message(message) {
 }
 
 const char* OutOfBoundsException::what() const noexcept {
-	return m_message.c_str();
+	return (const char*) m_message.c_str();
 }

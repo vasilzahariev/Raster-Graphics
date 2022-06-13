@@ -146,6 +146,8 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PolymorphicVector\PolymorphicVector.cpp" />
     <ClCompile Include="String\Source\String.cpp" />
+    <ClCompile Include="Tests\MatrixTests.cpp" />
+    <ClCompile Include="Tests\Vector3Tests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Command\Command.h" />
@@ -158,6 +160,7 @@
     <ClInclude Include="Interfaces\ICloneable.h" />
     <ClInclude Include="PolymorphicVector\PolymorphicVector.h" />
     <ClInclude Include="String\String.h" />
+    <ClInclude Include="Tests\doctest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

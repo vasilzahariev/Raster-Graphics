@@ -62,7 +62,7 @@ inline void PolymorphicVector<T>::push_back(ICloneable* element) {
 template<class T>
 inline void PolymorphicVector<T>::remove_at(const int index) {
 	if (index < 0 || index >= nSize)
-		throw OutOfBoundsException();
+		throw OutOfBoundsException("Index out of bounds");
 
 	std::swap(m_data[index], m_data[--nSize]);
 }
@@ -123,7 +123,7 @@ inline void PolymorphicVector<T>::copy(const PolymorphicVector<T>& other) {
 template<class T>
 inline T* PolymorphicVector<T>::getElementAtIndex(const int index) const {
 	if (index < 0 || index >= nSize)
-		throw OutOfBoundsException();
+		throw OutOfBoundsException("Index out of bounds");
 
 	return dynamic_cast<T*>(m_data[index]);
 }

@@ -1,10 +1,9 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
-#include "../Raster Graphics/Image/Vector3.h"
+#include "../Image/Vector3.h"
 
 #include <cstdint>
 #include <string>
-#include <sstream>
 
 TEST_CASE("Vector3") {
 	SUBCASE("Should construct a 3D vector and all it's values should equal 0") {
@@ -41,7 +40,7 @@ TEST_CASE("Vector3") {
 		Vector3<std::uint16_t> vec3 = 3;
 
 		vec2.x = 2;
-		
+
 		REQUIRE_FALSE(vec2.x == 1);
 		REQUIRE_EQ(vec2.y, 1);
 		REQUIRE_EQ(vec2.z, 1);
@@ -64,27 +63,5 @@ TEST_CASE("Vector3") {
 		REQUIRE_FALSE(vec1 == vec3);
 		REQUIRE_FALSE(vec1 == vec4);
 		REQUIRE(vec1 == vec5);
-	}
-
-	SUBCASE("Should read a vector from a stream") {
-		std::string str = "52 23 32";
-		std::istringstream input(str);
-		Vector3<std::uint16_t> vec;
-
-		vec.readFrom(input);
-
-		REQUIRE_EQ(vec.x, 52);
-		REQUIRE_EQ(vec.y, 23);
-		REQUIRE_EQ(vec.z, 32);
-	}
-
-	SUBCASE("Should write a vector to a stream") {
-		std::string str = "";
-		std::ostringstream output(str);
-		Vector3<std::uint16_t> vec(123, 342, 2);
-
-		vec.writeTo(output);
-
-		REQUIRE_EQ(output.str(), "123 342 2");
 	}
 }

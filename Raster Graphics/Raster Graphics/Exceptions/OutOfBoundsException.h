@@ -5,9 +5,13 @@
 
 class OutOfBoundsException : std::exception {
 public:
-	OutOfBoundsException(std::string_view message = "Index out of bounds");
+	OutOfBoundsException(const std::string& message);/*
+		: m_message(message) {
+	}*/
 
-	const char* what() const noexcept override final;
+	const char* what() const noexcept override final;/* {
+		return (const char*) m_message.c_str();
+	}*/
 
 private:
 	std::string m_message;

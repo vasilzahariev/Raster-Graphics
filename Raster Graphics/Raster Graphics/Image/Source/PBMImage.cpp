@@ -13,14 +13,14 @@ void PBMImage::readFromFile(std::ifstream& file) {
 	readMagicNumberFromFile(file);
 	readCommentsFromFile(file);
 	readRowsAndColsFromFileAndResizePixels(file);
-	m_pixels.readFromFile(file);
+	//TODO: m_pixels.readFromFile(file);
 }
 
 void PBMImage::writeToFile(std::ofstream& file) const {
 	writeMagicNumberToFile(file);
 	writeCommentsToFile(file);
 	writeRowsAndColsToFile(file);
-	m_pixels.writeToFile(file);
+	//TODO: m_pixels.writeToFile(file);
 }
 
 /*
@@ -29,12 +29,12 @@ void PBMImage::writeToFile(std::ofstream& file) const {
     [](unsigned char c){ return std::tolower(c); });
 */
 void PBMImage::rotate(std::string_view direction) {
-	if (direction == "left")
-		m_pixels.rotateLeft();
-	else if (direction == "right")
-		m_pixels.rotateRight();
-	else
-		throw std::logic_error("Direction should either be left or right");
+	//TODO: if (direction == "left")
+	//	m_pixels.rotateLeft();
+	//else if (direction == "right")
+	//	m_pixels.rotateRight();
+	//else
+	//	throw std::logic_error("Direction should either be left or right");
 }
 
 void PBMImage::readRowsAndColsFromFileAndResizePixels(std::ifstream& file) {
@@ -43,7 +43,7 @@ void PBMImage::readRowsAndColsFromFileAndResizePixels(std::ifstream& file) {
 
 	file >> rows >> cols;
 
-	m_pixels.resize(rows, cols);
+	// TODO: m_pixels.resize(rows, cols);
 }
 
 void PBMImage::writeRowsAndColsToFile(std::ofstream& file) const {

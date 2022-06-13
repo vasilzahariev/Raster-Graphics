@@ -165,7 +165,7 @@ char* String::getStrSum(const char* first, const size_t firstSize, const char* s
 
 char& String::getElementAtIndex(const int index) const {
 	if (index < 0 || index >= nSize)
-		throw OutOfBoundsException();
+		throw OutOfBoundsException("Index out of bounds");
 
 	return m_data[index];
 }
