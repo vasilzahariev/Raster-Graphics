@@ -2,7 +2,11 @@
 #define MATRIX_H
 
 #include <iostream>
+#include <fstream>
 #include <cstdint>
+
+#include "Vector3.h"
+#include "../Exceptions/OutOfBoundsException.h"
 
 template <typename T>
 class Matrix {
@@ -11,6 +15,14 @@ public:
 	Matrix(const T** matrix, const size_t rows, const size_t cols);
 	Matrix(const Matrix<T>& other);
 	~Matrix();
+
+	size_t getRows() const;
+	size_t getCols() const;
+
+	void readFromFile(std::ifstream& file);
+	void writeToFile(std::ofstream& file) const;
+
+	void resize(const size_t rows, const size_t cols);
 
 	void rotateRight();
 	void rotateLeft();
@@ -44,7 +56,7 @@ private:
 	void transpose();
 	void reverseRows();
 
-	void rotate(void(*firstOperation)(), void(*secondOperation)());
+	void rotate(void(Matrix<T>::*firstOperation)(), void(Matrix<T>::*secondOperation)());
 };
 
 #endif // !MATRIX_H
@@ -72,13 +84,46 @@ inline Matrix<T>::~Matrix() {
 }
 
 template<typename T>
+inline size_t Matrix<T>::getRows() const {
+	return nRows;
+}
+
+template<typename T>
+inline size_t Matrix<T>::getCols() const {
+	return nCols;
+}
+
+template<typename T>
+inline void Matrix<T>::readFromFile(std::ifstream& file) {
+	for (size_t row = 0; row < nRows; ++row)
+		for (size_t col = 0; col < nCols; ++col)
+			file >> m_data[row][col];
+}
+
+template<typename T>
+inline void Matrix<T>::writeToFile(std::ofstream& file) const {
+	for (size_t row = 0; row < nRows; ++row) {
+		for (size_t col = 0; col < nCols; ++col)
+			file << m_data[row][col];
+
+		file << '\n';
+	}
+}
+
+template<typename T>
+inline void Matrix<T>::resize(const size_t rows, const size_t cols) {
+	deleteData(m_data, nRows);
+	setData(m_data, nRows, nCols, nullptr, rows, cols, &getZeroValue);
+}
+
+template<typename T>
 inline void Matrix<T>::rotateRight() {
-	rotate(this->transpose, this->transpose);
+	rotate(&transpose, &reverseRows);
 }
 
 template<typename T>
 inline void Matrix<T>::rotateLeft() {
-	rotate(this->reverseRows , this->transpose);
+	rotate(&reverseRows , &transpose);
 }
 
 template<typename T>
@@ -166,7 +211,7 @@ inline void Matrix<T>::copy(const Matrix<T>& other) {
 template<typename T>
 inline T& Matrix<T>::getElement(const size_t row, const size_t col) const {
 	if (row < 0 || row >= nRows || col < 0 || col >= nCols)
-		throw std::range_error("Out of bounds position");
+		throw OutOfBoundsException("Out of bounds position");
 	
 	return m_data[row][col];
 }
@@ -194,7 +239,7 @@ inline void Matrix<T>::reverseRows() {
 }
 
 template<typename T>
-inline void Matrix<T>::rotate(void(*firstOperation)(), void(*secondOperation)()) {
-	firstOperation();
-	secondOperation();
+inline void Matrix<T>::rotate(void(Matrix<T>::*firstOperation)(), void(Matrix<T>::*secondOperation)()) {
+	firstOperation;
+	secondOperation;
 }

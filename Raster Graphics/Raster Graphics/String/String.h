@@ -4,6 +4,8 @@
 #include <iostream>
 #include <cstring>
 
+#include "../Exceptions/OutOfBoundsException.h"
+
 /*!
 * Имплементация на основните функционалности на един String
 */
