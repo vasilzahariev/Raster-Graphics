@@ -5,5 +5,5 @@ OpenCommand::OpenCommand(Image* const image, std::string_view fileLocation)
 }
 
 void OpenCommand::execute() {
-	*m_image = Image();
+//	*m_image = Image();
 }

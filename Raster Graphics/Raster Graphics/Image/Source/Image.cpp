@@ -44,7 +44,7 @@ void Image::writeMagicNumberToFile(std::ofstream& file) const {
 }
 
 void Image::writeCommentsToFile(std::ofstream& file) const {
-	for (std::vector<const std::string>::const_iterator commentIt = m_comments.begin(); commentIt != m_comments.end(); ++commentIt)
+	for (std::vector<std::string>::const_iterator commentIt = m_comments.begin(); commentIt != m_comments.end(); ++commentIt)
 		writeCommentLineToFile(file, *commentIt);
 }
 

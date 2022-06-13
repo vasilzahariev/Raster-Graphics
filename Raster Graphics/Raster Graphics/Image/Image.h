@@ -9,7 +9,8 @@
 #include "Matrix.h"
 #include "../Interfaces/ICloneable.h"
 
-class Image : public ICloneable {
+// add Icloneable
+class Image {
 public:
 	Image(std::string_view fileName);
 
@@ -27,7 +28,7 @@ public:
 
 protected:
 	std::string m_fileName;
-	std::vector<const std::string> m_comments;
+	std::vector<std::string> m_comments;
 	std::uint16_t m_magicNumber;
 	std::uint16_t m_maxColorValue;
 	bool bGrayscale;

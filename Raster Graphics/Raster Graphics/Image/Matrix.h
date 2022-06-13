@@ -44,9 +44,9 @@ private:
 	static T getZeroValue(const T**, const size_t, const size_t, const size_t);
 	static T getTransposedValue(const T**, const size_t, const size_t, const size_t);
 	static T getReversedRowsValue(const T**, const size_t, const size_t, const size_t);
-	void setData(const T** destination, size_t& destinationRows, size_t& destinationCols, const T** source, const size_t sourceRows, const size_t sourceCols, T(*getValue)(const T**, const size_t, const size_t, const size_t));
-	void setDataRows(const T** destination, size_t& destinationRows, size_t& destinationCols, const T** source, T(*getValue)(const T**, const size_t, const size_t, const size_t));
-	void setDataRowCols(const T** destination, const size_t row, const size_t rows, size_t& destinationCols, const T** source, T(*getValue)(const T**, const size_t, const size_t, const size_t));
+	void setData(T** destination, size_t& destinationRows, size_t& destinationCols, const T** source, const size_t sourceRows, const size_t sourceCols, T(*getValue)(const T**, const size_t, const size_t, const size_t));
+	void setDataRows(T** destination, size_t& destinationRows, size_t& destinationCols, const T** source, T(*getValue)(const T**, const size_t, const size_t, const size_t));
+	void setDataRowCols(T** destination, const size_t row, const size_t rows, size_t& destinationCols, const T** source, T(*getValue)(const T**, const size_t, const size_t, const size_t));
 
 	void copy(const Matrix<T>& other);
 
@@ -118,12 +118,12 @@ inline void Matrix<T>::resize(const size_t rows, const size_t cols) {
 
 template<typename T>
 inline void Matrix<T>::rotateRight() {
-	rotate(&transpose, &reverseRows);
+	//TODO: rotate(&transpose, &reverseRows);
 }
 
 template<typename T>
 inline void Matrix<T>::rotateLeft() {
-	rotate(&reverseRows , &transpose);
+	//TODO: rotate(&reverseRows , &transpose);
 }
 
 template<typename T>
@@ -179,7 +179,7 @@ inline T Matrix<T>::getReversedRowsValue(const T** matrix, const size_t row, con
 }
 
 template<typename T>
-inline void Matrix<T>::setData(const T** destination, size_t& destinationRows, size_t& destinationCols, const T** source, const size_t sourceRows, const size_t sourceCols, T(*getValue)(const T**, const size_t, const size_t, const size_t)) {
+inline void Matrix<T>::setData(T** destination, size_t& destinationRows, size_t& destinationCols, const T** source, const size_t sourceRows, const size_t sourceCols, T(*getValue)(const T**, const size_t, const size_t, const size_t)) {
 	destinationRows = sourceRows;
 	destinationCols = sourceCols;
 	destination = new T * [destinationRows] {nullptr, };
@@ -188,7 +188,7 @@ inline void Matrix<T>::setData(const T** destination, size_t& destinationRows, s
 }
 
 template<typename T>
-inline void Matrix<T>::setDataRows(const T** destination, size_t& destinationRows, size_t& destinationCols, const T** source, T(*getValue)(const T**, const size_t, const size_t, const size_t)) {
+inline void Matrix<T>::setDataRows(T** destination, size_t& destinationRows, size_t& destinationCols, const T** source, T(*getValue)(const T**, const size_t, const size_t, const size_t)) {
 	for (size_t row = 0; row < destinationRows; ++row) {
 		destination[row] = new T[destinationCols];
 
@@ -197,7 +197,7 @@ inline void Matrix<T>::setDataRows(const T** destination, size_t& destinationRow
 }
 
 template<typename T>
-inline void Matrix<T>::setDataRowCols(const T** destination, const size_t rows, const size_t row, size_t& destinationCols, const T** source, T(*getValue)(const T**, const size_t, const size_t, const size_t)) {
+inline void Matrix<T>::setDataRowCols(T** destination, const size_t rows, const size_t row, size_t& destinationCols, const T** source, T(*getValue)(const T**, const size_t, const size_t, const size_t)) {
 	for (size_t col = 0; col < destinationCols; ++col)
 		m_data[row][col] = getValue(source, row, col, rows);
 }

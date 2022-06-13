@@ -2,7 +2,8 @@
 
 #include "../Interfaces/ICloneable.h"
 
-class Command : ICloneable {
+// TODO: Add ICloneable
+class Command {
 public:
 	virtual void execute() = 0;
 

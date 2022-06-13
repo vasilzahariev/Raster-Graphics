@@ -14,10 +14,10 @@ public:
 	Vector3(const std::uint16_t val = 0);
 	Vector3(const std::uint16_t x, const std::uint16_t y, const std::uint16_t z);
 
-	bool operator=(const Vector3<T>& other) const;
+	bool operator==(const Vector3<T>& other) const;
 
-	friend std::istream& operator>>(std::istream& in, Vector3<T>& vector);
-	friend std::ostream& operator<<(std::ostream& out, Vector3<T>& vector);
+	void readFrom(std::istream& in = std::cin);
+	void writeTo(std::ostream& out = std::cout) const;
 };
 
 #endif // !VECTOR3_H
@@ -33,6 +33,16 @@ inline Vector3<T>::Vector3(const std::uint16_t x, const std::uint16_t y, const s
 }
 
 template<typename T>
-inline bool Vector3<T>::operator=(const Vector3<T>& other) const {
+inline bool Vector3<T>::operator==(const Vector3<T>& other) const {
 	return (x == other.x && y == other.y && z == other.z);
+}
+
+template<typename T>
+inline void Vector3<T>::readFrom(std::istream& in) {
+	in >> x >> y >> z;
+}
+
+template<typename T>
+inline void Vector3<T>::writeTo(std::ostream& out) const {
+	out << x << ' ' << y << ' ' << z;
 }
