@@ -16,6 +16,8 @@ public:
 	void push_back(ICloneable* element);
 	void remove_at(const int index);
 
+	size_t size() const;
+
 	T* operator[](const int index);
 	const T* operator[](const int index) const;
 
@@ -65,6 +67,11 @@ inline void PolymorphicVector<T>::remove_at(const int index) {
 		throw OutOfBoundsException("Index out of bounds");
 
 	std::swap(m_data[index], m_data[--nSize]);
+}
+
+template<class T>
+inline size_t PolymorphicVector<T>::size() const {
+	return nSize;
 }
 
 template<class T>

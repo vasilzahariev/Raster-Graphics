@@ -9,22 +9,22 @@
 #include "Matrix.h"
 #include "../Interfaces/ICloneable.h"
 
-// add Icloneable
-class Image {
+class Image : public ICloneable {
 public:
-	Image(std::string_view fileName);
-
 	std::string_view getFileName() const;
 
 	bool isGrayscale() const;
 	bool isMonochrome() const;
 
-	virtual Image* clone() const = 0;
+	virtual Image* clone() = 0;
 
 	virtual void readFromFile(std::ifstream& file) = 0;
 	virtual void writeToFile(std::ofstream& file) const = 0;
 
-	virtual void rotate(std::string_view direction) = 0;
+	virtual void rotate(std::string direction) = 0;
+
+protected:
+	Image(std::string_view fileName, const bool grayscale = false, const bool monochrome = false, const std::uint16_t maxColorValue = 0);
 
 protected:
 	std::string m_fileName;

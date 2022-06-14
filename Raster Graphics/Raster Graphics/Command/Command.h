@@ -2,12 +2,9 @@
 
 #include "../Interfaces/ICloneable.h"
 
-// TODO: Add ICloneable
 class Command {
 public:
 	virtual void execute() = 0;
-
-	// TODO: CHECK: virtual Command* clone() const = 0;
 
 };
 

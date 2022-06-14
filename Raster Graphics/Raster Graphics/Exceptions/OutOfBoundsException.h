@@ -3,15 +3,11 @@
 
 #include <iostream>
 
-class OutOfBoundsException : std::exception {
+class OutOfBoundsException : public std::exception {
 public:
-	OutOfBoundsException(const std::string& message);/*
-		: m_message(message) {
-	}*/
+	OutOfBoundsException(const std::string& message);
 
-	const char* what() const noexcept override final;/* {
-		return (const char*) m_message.c_str();
-	}*/
+	const char* what() const noexcept override final;
 
 private:
 	std::string m_message;

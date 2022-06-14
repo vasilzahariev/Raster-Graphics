@@ -6,16 +6,20 @@
 
 #include "Command.h"
 #include "../Image/Image.h"
+#include "../Exceptions/FileException.h"
+#include "../Session/SessionMaster.h"
+#include "../Image/ImageFactory.h"
+#include "../Exceptions/ImageException.h"
 
-class OpenCommand : Command {
+class OpenCommand : public Command {
 public:
-	OpenCommand(Image* const image, std::string_view fileLocation);
+	OpenCommand(SessionMaster* const sessionMaster, std::string_view fileLocation);
 
 	void execute() override;
 
 private:
 	std::string m_fileLocation;
-	Image* const m_image;
+	SessionMaster* const m_sessionMaster;
 };
 
 #endif // !OPENCOMMAND_H

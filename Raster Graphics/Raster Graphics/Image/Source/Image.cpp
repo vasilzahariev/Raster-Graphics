@@ -1,8 +1,7 @@
 #include "../Image.h"
 
-Image::Image(std::string_view fileName)
-	: m_fileName(fileName) {
-
+Image::Image(std::string_view fileName, const bool grayscale, const bool monochrome, const std::uint16_t maxColorValue)
+	: m_fileName(fileName), bGrayscale(grayscale), bMonochrome(monochrome), m_maxColorValue(maxColorValue) {
 }
 
 std::string_view Image::getFileName() const {
