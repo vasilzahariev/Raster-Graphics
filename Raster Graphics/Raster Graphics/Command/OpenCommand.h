@@ -15,9 +15,7 @@ class OpenCommand : public Command {
 public:
 	OpenCommand(SessionMaster* const sessionMaster, std::string_view fileLocation);
 
-	void execute() override;
-
-	OpenCommand* clone() override;
+	std::string execute() override;
 
 private:
 	std::string m_fileLocation;

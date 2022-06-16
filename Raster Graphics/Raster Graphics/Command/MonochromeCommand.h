@@ -8,9 +8,7 @@ class MonochromeCommand : public Command {
 public:
 	MonochromeCommand(Session* const session);
 
-	void execute() override;
-
-	MonochromeCommand* clone() override;
+	std::string execute() override;
 
 private:
 	Session* const m_session;

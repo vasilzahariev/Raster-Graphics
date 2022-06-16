@@ -12,7 +12,7 @@ Engine& Engine::getInstance() {
 void Engine::run() {
 	std::string line;
 
-	// TODO: Catch Errors
+	// TODO: Catch Errors or maybe don't and just get the message of the errors? sounds better?
 	
 	do {
 		std::cout << '>';
@@ -22,6 +22,6 @@ void Engine::run() {
 		if (cmd == nullptr)
 			throw CommandException("Invalid input arguments");
 		
-		cmd->execute();
+		std::cout << cmd->execute() << std::endl;
 	} while (true);
 }

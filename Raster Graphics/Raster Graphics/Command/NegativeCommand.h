@@ -8,9 +8,7 @@ class NegativeCommand : public Command {
 public:
 	NegativeCommand(Session* const session);
 
-	void execute() override;
-
-	NegativeCommand* clone() override;
+	std::string execute() override;
 
 private:
 	Session* const m_session;

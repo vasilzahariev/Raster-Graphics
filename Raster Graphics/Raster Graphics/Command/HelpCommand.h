@@ -6,9 +6,7 @@
 
 class HelpCommand : public Command {
 public:
-	void execute() override;
-
-	HelpCommand* clone() override;
+	std::string execute() override;
 };
 
 #endif // !HELPCOMMAND_H

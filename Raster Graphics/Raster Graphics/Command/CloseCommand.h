@@ -8,9 +8,7 @@ class CloseCommand : public Command {
 public:
 	CloseCommand(Session* const session);
 
-	void execute() override;
-
-	CloseCommand* clone() override;
+	std::string execute() override;
 
 private:
 	Session* const m_session;

@@ -4,7 +4,7 @@ OpenCommand::OpenCommand(SessionMaster* const sessionMaster, std::string_view fi
 	: m_sessionMaster(sessionMaster), m_fileLocation(fileLocation) {
 }
 
-void OpenCommand::execute() {
+std::string OpenCommand::execute() {
 	std::ifstream file(m_fileLocation);
 
 	if (!file.is_open())
@@ -21,9 +21,5 @@ void OpenCommand::execute() {
 
 	m_sessionMaster->getActiveSession()->addImage(image);
 
-	file.close();
-}
-
-OpenCommand* OpenCommand::clone() {
-	return new OpenCommand(m_sessionMaster, m_fileLocation);
+	file.close();// TODO: Add try catch and return the proper message
 }

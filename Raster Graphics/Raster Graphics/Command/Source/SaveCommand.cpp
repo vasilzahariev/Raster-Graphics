@@ -4,10 +4,6 @@ SaveCommand::SaveCommand(Session* const session)
     : m_session(session) {
 }
 
-void SaveCommand::execute() {
-    m_session->saveChanges();
-}
-
-Command* SaveCommand::clone() {
-    return new SaveCommand(m_session);
+std::string SaveCommand::execute() {
+    m_session->saveChanges();// TODO: Add try catch and return the proper message
 }

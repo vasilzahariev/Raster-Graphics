@@ -2,13 +2,9 @@
 
 #include <string>
 
-#include "../Interfaces/ICloneable.h"
-
-class Command : public ICloneable {
+class Command {
 public:
-	virtual void execute() = 0;
-
-	virtual Command* clone() = 0;
+	virtual std::string execute() = 0;
 };
 
 #endif // !COMMAND_H

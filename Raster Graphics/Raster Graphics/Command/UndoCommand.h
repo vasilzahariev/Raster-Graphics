@@ -8,9 +8,7 @@ class UndoCommand : public Command {
 public:
 	UndoCommand(Session* const session);
 
-	void execute() override;
-
-	UndoCommand* clone() override;
+	std::string execute() override;
 
 private:
 	Session* const m_session;

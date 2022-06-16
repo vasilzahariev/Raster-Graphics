@@ -1,6 +1,6 @@
 #include "../HelpCommand.h"
 
-void HelpCommand::execute() {
+std::string HelpCommand::execute() {
 	std::cout << "The following commands are supported:" << std::endl;
 	std::cout << "open <file>											opens <file>" << std::endl;
 	std::cout << "close													closes currently opened file" << std::endl;
@@ -17,8 +17,6 @@ void HelpCommand::execute() {
 	std::cout << "collage <direction> <image1> <image2> <outimage>		creates a collage of <image1> and <image2> in <outimage>. <direction> is either horizontal or vertical" << std::endl;
 	std::cout << "help													prints information about every command" << std::endl;
 	std::cout << "exit													exits the program" << std::endl;
-}
 
-HelpCommand* HelpCommand::clone() {
-	return new HelpCommand();
+	// TODO: Add try catch and return the proper message
 }

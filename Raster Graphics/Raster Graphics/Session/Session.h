@@ -1,6 +1,8 @@
 #ifndef SESSION_H
 #define SESSION_H
 
+#include <iostream>
+
 #include "../PolymorphicVector/PolymorphicVector.h"
 #include "../Image/Image.h"
 #include "../Command/Command.h"
@@ -29,11 +31,14 @@ public:
 
 	void close();
 
+	std::string info(std::ostream& out = std::cout) const;
+
 	// TODO: Method that cheks if there are unsaved changes
 
 private:
 	int nId;
 	PolymorphicVector<Image> m_images;
+	std::vector<const std::string> m_unsavedChanges;
 
 	void saveImageToFile(Image* image, const std::string& fileName);
 };

@@ -10,9 +10,7 @@ class RotateCommand : public Command {
 public:
 	RotateCommand(Session* const session, std::string_view direction);
 
-	void execute() override;
-
-	RotateCommand* clone() override;
+	std::string execute() override;
 
 private:
 	Session* const m_session;

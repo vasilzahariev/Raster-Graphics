@@ -8,9 +8,7 @@ class GrayscaleCommand : public Command {
 public:
 	GrayscaleCommand(Session* const session);
 
-	void execute() override;
-
-	GrayscaleCommand* clone() override;
+	std::string execute() override;
 
 private:
 	Session* const m_session;

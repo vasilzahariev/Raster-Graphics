@@ -8,9 +8,7 @@ class SaveCommand : public Command {
 public:
 	SaveCommand(Session* const session);
 
-	void execute() override;
-
-	Command* clone() override;
+	std::string execute() override;
 
 private:
 	Session* const m_session;
