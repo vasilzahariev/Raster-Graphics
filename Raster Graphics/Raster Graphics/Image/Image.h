@@ -26,6 +26,8 @@ public:
 
 	virtual void rotate(std::string direction) = 0;
 
+	virtual void grayscale() = 0;
+
 	virtual void undo();
 
 	void removeUnsavedChanges();

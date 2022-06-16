@@ -18,6 +18,8 @@ public:
 
 	void readFrom(std::istream& in = std::cin);
 	void writeTo(std::ostream& out = std::cout) const;
+
+	void transformToGrayscale();
 };
 
 #endif // !VECTOR3_H
@@ -45,4 +47,13 @@ inline void Vector3<T>::readFrom(std::istream& in) {
 template<typename T>
 inline void Vector3<T>::writeTo(std::ostream& out) const {
 	out << x << ' ' << y << ' ' << z;
+}
+
+template<typename T>
+inline void Vector3<T>::transformToGrayscale() {
+	std::uint16_t gray = (x + y + z) / 3;
+
+	x = gray;
+	y = gray;
+	z = gray;
 }

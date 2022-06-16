@@ -1,7 +1,7 @@
 #include "../PPMImage.h"
 
 PPMImage::PPMImage(std::string_view fileName)
-	: Image(fileName, true, false, 1) {
+	: Image(fileName, false, false, 1) {
 	//
 }
 
@@ -36,6 +36,12 @@ void PPMImage::rotate(std::string direction) {
 	m_previousVersion = clone();
 
 	ImageUtilities<Vector3<std::uint16_t>>::rotatePixels(direction, m_pixels);
+}
+
+void PPMImage::grayscale() {
+	for (size_t row = 0; row < m_pixels.getRows(); ++row)
+		for (size_t col = 0; col < m_pixels.getCols(); ++col)
+			m_pixels.getElementAt(row, col).transformToGrayscale();
 }
 
 void PPMImage::readRowsAndColsFromFileAndResizePixels(std::ifstream& file) {

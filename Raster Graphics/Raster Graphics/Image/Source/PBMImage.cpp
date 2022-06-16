@@ -34,6 +34,10 @@ void PBMImage::rotate(std::string direction) {
 	ImageUtilities<std::uint16_t>::rotatePixels(direction, m_pixels);
 }
 
+void PBMImage::grayscale() {
+	throw ImageException("Monochrome Images cannot be grayscaled!");
+}
+
 void PBMImage::readRowsAndColsFromFileAndResizePixels(std::ifstream& file) {
 	ImageUtilities<std::uint16_t>::readParamsToResizeMatrixFromFile(file, m_pixels);
 }

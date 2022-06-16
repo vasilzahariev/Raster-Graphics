@@ -38,6 +38,10 @@ void PGMImage::rotate(std::string direction) {
 	ImageUtilities<std::uint16_t>::rotatePixels(direction, m_pixels);
 }
 
+void PGMImage::grayscale() {
+	throw ImageException("Grayscale Image cannot be converted into grayscale");
+}
+
 void PGMImage::readRowsAndColsFromFileAndResizePixels(std::ifstream& file) {
 	ImageUtilities<std::uint16_t>::readParamsToResizeMatrixFromFile(file, m_pixels);
 }

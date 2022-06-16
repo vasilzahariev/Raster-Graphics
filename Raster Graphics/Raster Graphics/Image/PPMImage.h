@@ -15,6 +15,8 @@ class PPMImage : public Image {
 
 	void rotate(std::string direction) override;
 
+	void grayscale() override;
+
 private:
 	Matrix<Vector3<std::uint16_t>> m_pixels;
 

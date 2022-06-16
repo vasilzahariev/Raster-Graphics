@@ -16,6 +16,8 @@ class PGMImage : public Image {
 
 	void rotate(std::string direction) override;
 
+	void grayscale() override;
+
 private:
 	Matrix<std::uint16_t> m_pixels;
 

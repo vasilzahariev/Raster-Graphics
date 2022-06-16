@@ -12,11 +12,9 @@ int Session::getId() const {
 
 void Session::grayscale() {
 	// Create Iterators for the vector
-	for (size_t index = 0; index < m_images.size(); ++index) {
-		if (!m_images[index]->isGrayscale() && !m_images[index]->isMonochrome()) {
-			// TODO: m_images[index]->grayscale();
-		}
-	}
+	for (size_t index = 0; index < m_images.size(); ++index)
+		if (!m_images[index]->isGrayscale() && !m_images[index]->isMonochrome())
+			m_images[index]->grayscale();
 }
 
 void Session::addImage(Image* image) {
