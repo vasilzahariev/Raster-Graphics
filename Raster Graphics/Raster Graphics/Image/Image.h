@@ -8,6 +8,9 @@
 
 #include "Matrix.h"
 #include "../Interfaces/ICloneable.h"
+#include "../Exceptions/CommandException.h"
+#include "../Exceptions/ImageException.h"
+#include "ImageUtilities.h"
 
 class Image : public ICloneable {
 public:
@@ -22,6 +25,10 @@ public:
 	virtual void writeToFile(std::ofstream& file) = 0;
 
 	virtual void rotate(std::string direction) = 0;
+
+	virtual void undo();
+
+	void removeUnsavedChanges();
 
 protected:
 	Image(std::string_view fileName, const bool grayscale = false, const bool monochrome = false, const std::uint16_t maxColorValue = 0);
@@ -50,6 +57,8 @@ protected:
 	virtual void writeRowsAndColsToFile(std::ofstream& file) const = 0;
 
 	void clearPreviousVersions();
+
+	virtual void copy(Image* const image);
 };
 
 #endif // !IMAGE_H

@@ -14,6 +14,7 @@
 #include "SaveCommand.h"
 #include "SaveAsCommand.h"
 #include "CloseCommand.h"
+#include "UndoCommand.h"
 
 class CommandFactory {
 public:

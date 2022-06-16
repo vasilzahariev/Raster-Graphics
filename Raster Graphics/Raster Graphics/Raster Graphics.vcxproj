@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Command\CloseCommand.cpp" />
+    <ClCompile Include="Command\Source\CloseCommand.cpp" />
     <ClCompile Include="Command\Source\SaveAsCommand.cpp" />
     <ClCompile Include="Command\Source\SaveCommand.cpp" />
     <ClCompile Include="Command\Source\RotateCommand.cpp" />
@@ -147,13 +147,14 @@
     <ClCompile Include="Command\Source\HelpCommand.cpp" />
     <ClCompile Include="Command\Source\CommandParser.cpp" />
     <ClCompile Include="Command\Source\OpenCommand.cpp" />
+    <ClCompile Include="Command\Source\UndoCommand.cpp" />
     <ClCompile Include="Engine\Source\Engine.cpp" />
     <ClCompile Include="Exceptions\Source\ImageException.cpp" />
     <ClCompile Include="Exceptions\Source\CommandException.cpp" />
     <ClCompile Include="Exceptions\Source\FileException.cpp" />
     <ClCompile Include="Exceptions\Source\OutOfBoundsException.cpp" />
     <ClCompile Include="Exceptions\Source\SessionException.cpp" />
-    <ClCompile Include="Image\ImageFactory.cpp" />
+    <ClCompile Include="Image\Source\ImageFactory.cpp" />
     <ClCompile Include="Image\Source\Image.cpp" />
     <ClCompile Include="Image\Source\PBMImage.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -187,6 +188,8 @@
     <ClInclude Include="Image\ImageFactory.h" />
     <ClInclude Include="Image\Matrix.h" />
     <ClInclude Include="Image\PBMImage.h" />
+    <ClInclude Include="Image\PGMImage.h" />
+    <ClInclude Include="Image\PPMImage.h" />
     <ClInclude Include="Image\Vector3.h" />
     <ClInclude Include="Interfaces\ICloneable.h" />
     <ClInclude Include="PolymorphicVector\PolymorphicVector.h" />

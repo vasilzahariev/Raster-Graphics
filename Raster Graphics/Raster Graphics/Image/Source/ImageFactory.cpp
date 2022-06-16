@@ -1,4 +1,4 @@
-#include "ImageFactory.h"
+#include "../ImageFactory.h"
 
 Image* ImageFactory::createImage(std::string_view fileName) {
     std::string type = extractTypeFromName(fileName);

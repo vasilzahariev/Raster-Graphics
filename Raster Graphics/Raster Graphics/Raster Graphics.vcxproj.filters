@@ -72,7 +72,7 @@
     <ClCompile Include="Exceptions\Source\SessionException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Image\ImageFactory.cpp">
+    <ClCompile Include="Image\Source\ImageFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Exceptions\Source\ImageException.cpp">
@@ -87,7 +87,10 @@
     <ClCompile Include="Command\Source\SaveAsCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Command\CloseCommand.cpp">
+    <ClCompile Include="Command\Source\CloseCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Command\Source\UndoCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -174,6 +177,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Command\UndoCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Image\PPMImage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Image\PGMImage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

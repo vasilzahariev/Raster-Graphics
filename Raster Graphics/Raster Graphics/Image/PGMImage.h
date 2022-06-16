@@ -1,24 +1,20 @@
-#ifndef PBMIMAGE_H
-#define PBMIMAGE_H
+#ifndef PGMIMAGE_H
+#define PGMIMAGE_H
 
 #include <algorithm>
 
 #include "Image.h"
 
-class PBMImage : public Image {
-public:
-	PBMImage(std::string_view fileName);
-	PBMImage(const PBMImage& other);
+class PGMImage : public Image {
+	PGMImage(std::string_view fileName);
+	PGMImage(const PGMImage& other);
 
-	PBMImage* clone() override;
+	PGMImage* clone() override;
 
 	void readFromFile(std::ifstream& file) override;
 	void writeToFile(std::ofstream& file) override;
 
 	void rotate(std::string direction) override;
-
-private:
-	static const std::uint16_t MAX_COLOR_VALUE = 1;
 
 private:
 	Matrix<std::uint16_t> m_pixels;
@@ -30,4 +26,4 @@ private:
 	void copy(Image* const image) override;
 };
 
-#endif // !PBMIMAGE_H
+#endif // !PGMIMAGE_H

@@ -1,56 +1,60 @@
-﻿#include "../PBMImage.h"
+#include "../PGMImage.h"
 
-PBMImage::PBMImage(std::string_view fileName)
-	: Image(fileName, false, true, MAX_COLOR_VALUE) {
+PGMImage::PGMImage(std::string_view fileName)
+	: Image(fileName, true, false, 1) {
+	//
 }
 
-PBMImage::PBMImage(const PBMImage& other)
+PGMImage::PGMImage(const PGMImage& other)
 	: Image(other), m_pixels(other.m_pixels) {
+	//
 }
 
-PBMImage* PBMImage::clone() {
-	return new PBMImage(*this);
+PGMImage* PGMImage::clone() {
+	return new PGMImage(*this);
 }
 
-void PBMImage::readFromFile(std::ifstream& file) {
+void PGMImage::readFromFile(std::ifstream& file) {
 	readMagicNumberFromFile(file);
 	readCommentsFromFile(file);
 	readRowsAndColsFromFileAndResizePixels(file);
+	readMaxColorValueFromFile(file);
 	m_pixels.readFromFile(file);
 }
 
-void PBMImage::writeToFile(std::ofstream& file) {
+void PGMImage::writeToFile(std::ofstream& file) {
 	writeMagicNumberToFile(file);
 	writeCommentsToFile(file);
 	writeRowsAndColsToFile(file);
+	writeMaxColorValue(file);
 	m_pixels.writeToFile(file);
 
 	clearPreviousVersions();
 }
 
-void PBMImage::rotate(std::string direction) {
+void PGMImage::rotate(std::string direction) {
 	m_previousVersion = clone();
 
 	ImageUtilities<std::uint16_t>::rotatePixels(direction, m_pixels);
 }
 
-void PBMImage::readRowsAndColsFromFileAndResizePixels(std::ifstream& file) {
+void PGMImage::readRowsAndColsFromFileAndResizePixels(std::ifstream& file) {
 	ImageUtilities<std::uint16_t>::readParamsToResizeMatrixFromFile(file, m_pixels);
 }
 
-void PBMImage::writeRowsAndColsToFile(std::ofstream& file) const {
+void PGMImage::writeRowsAndColsToFile(std::ofstream& file) const {
 	ImageUtilities<std::uint16_t>::writePixelsRowsAndColsToFile(file, m_pixels);
 }
 
-void PBMImage::copy(Image* const image) {
+void PGMImage::copy(Image* const image) {
 	Image::copy(image);
 
-	PBMImage* pbm = dynamic_cast<PBMImage*>(image);
+	PGMImage* pgm = dynamic_cast<PGMImage*>(image);
 
-	if (pbm == nullptr)
+	if (pgm == nullptr)
 		throw ImageException("Incorrect image type");
 
-	m_pixels = pbm->m_pixels;
+	m_pixels = pgm->m_pixels;
 
 	// TODO: Check when you should delete image;
 }

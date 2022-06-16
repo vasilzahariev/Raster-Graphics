@@ -23,6 +23,8 @@ public:
 	void saveChanges();
 	void saveAs(const std::string& fileName);
 
+	void undo();
+
 	void close();
 
 	// TODO: Method that cheks if there are unsaved changes

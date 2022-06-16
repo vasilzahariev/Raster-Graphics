@@ -1,4 +1,4 @@
-#include "CloseCommand.h"
+#include "../CloseCommand.h"
 
 CloseCommand::CloseCommand(Session* const session)
 	: m_session(session) {

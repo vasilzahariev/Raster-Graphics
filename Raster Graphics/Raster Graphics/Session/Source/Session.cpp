@@ -43,8 +43,13 @@ void Session::close() {
 	// TODO: PolymorphicIterator
 
 	for (size_t index = 0; index < m_images.size(); ++index) {
-		// TODO: m_images[index]->revertBackToNormal();
+		m_images[index]->removeUnsavedChanges();
 	}
+}
+
+void Session::undo() {
+	for (size_t index = 0; index < m_images.size(); ++index)
+		m_images[index]->undo();
 }
 
 void Session::saveImageToFile(Image* image, const std::string& fileName) {

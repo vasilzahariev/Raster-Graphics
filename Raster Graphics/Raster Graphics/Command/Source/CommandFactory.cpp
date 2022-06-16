@@ -13,6 +13,8 @@ Command* CommandFactory::createCommand(std::vector<std::string_view> args, Sessi
         return new SaveAsCommand(sessionMaster->getActiveSession(), args[1]);
     else if (commandType == "close")
         return new CloseCommand(sessionMaster->getActiveSession());
+    else if (commandType == "undo")
+        return new UndoCommand(sessionMaster->getActiveSession());
     else if (commandType == "help")
         return new HelpCommand();
 

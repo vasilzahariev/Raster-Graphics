@@ -1,16 +1,14 @@
-#ifndef PBMIMAGE_H
-#define PBMIMAGE_H
-
-#include <algorithm>
+#ifndef PPMIMAGE_H
+#define PPMIMAGE_H
 
 #include "Image.h"
+#include "Vector3.h"
 
-class PBMImage : public Image {
-public:
-	PBMImage(std::string_view fileName);
-	PBMImage(const PBMImage& other);
+class PPMImage : public Image {
+	PPMImage(std::string_view fileName);
+	PPMImage(const PPMImage& other);
 
-	PBMImage* clone() override;
+	PPMImage* clone() override;
 
 	void readFromFile(std::ifstream& file) override;
 	void writeToFile(std::ofstream& file) override;
@@ -18,10 +16,7 @@ public:
 	void rotate(std::string direction) override;
 
 private:
-	static const std::uint16_t MAX_COLOR_VALUE = 1;
-
-private:
-	Matrix<std::uint16_t> m_pixels;
+	Matrix<Vector3<std::uint16_t>> m_pixels;
 
 	void readRowsAndColsFromFileAndResizePixels(std::ifstream& file) override;
 
@@ -30,4 +25,4 @@ private:
 	void copy(Image* const image) override;
 };
 
-#endif // !PBMIMAGE_H
+#endif // !PPMIMAGE_H

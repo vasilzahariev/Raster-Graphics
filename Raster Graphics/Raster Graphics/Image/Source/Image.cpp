@@ -1,5 +1,13 @@
 #include "../Image.h"
 
+void Image::undo() {
+	copy(m_previousVersion);
+}
+
+void Image::removeUnsavedChanges() {
+	clearPreviousVersions();
+}
+
 Image::Image(std::string_view fileName, const bool grayscale, const bool monochrome, const std::uint16_t maxColorValue)
 	: m_fileName(fileName), bGrayscale(grayscale), bMonochrome(monochrome), m_maxColorValue(maxColorValue), m_previousVersion(nullptr) {
 }
@@ -67,4 +75,11 @@ void Image::clearPreviousVersions() {
 	m_previousVersion->clearPreviousVersions();
 
 	delete m_previousVersion;
+}
+
+void Image::copy(Image* const image) {
+	if (image == nullptr)
+		throw CommandException("Undo command unavailable");
+
+	// TODO: Check what needs to be copied after doing the other commands
 }
