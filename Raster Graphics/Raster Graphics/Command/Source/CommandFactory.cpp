@@ -7,6 +7,10 @@ Command* CommandFactory::createCommand(std::vector<std::string_view> args, Sessi
         return new OpenCommand(sessionMaster, args[1]);
     else if (commandType == "rotate")
         return new RotateCommand(sessionMaster->getActiveSession(), args[1]);
+    else if (commandType == "grayscale")
+        return new GrayscaleCommand(sessionMaster->getActiveSession());
+    else if (commandType == "monochrome")
+        return new MonochromeCommand(sessionMaster->getActiveSession());
     else if (commandType == "save")
         return new SaveCommand(sessionMaster->getActiveSession());
     else if (commandType == "saveas")
@@ -18,5 +22,5 @@ Command* CommandFactory::createCommand(std::vector<std::string_view> args, Sessi
     else if (commandType == "help")
         return new HelpCommand();
 
-    return nullptr;
+    throw CommandException("Invalid command");
 }

@@ -5,6 +5,7 @@
 #include "Vector3.h"
 
 class PPMImage : public Image {
+public:
 	PPMImage(std::string_view fileName);
 	PPMImage(const PPMImage& other);
 
@@ -16,6 +17,7 @@ class PPMImage : public Image {
 	void rotate(std::string direction) override;
 
 	void grayscale() override;
+	void monochrome() override;
 
 private:
 	Matrix<Vector3<std::uint16_t>> m_pixels;

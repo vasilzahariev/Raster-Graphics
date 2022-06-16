@@ -42,6 +42,14 @@ void PGMImage::grayscale() {
 	throw ImageException("Grayscale Image cannot be converted into grayscale");
 }
 
+void PGMImage::monochrome() {
+	for (size_t row = 0; row < m_pixels.getRows(); ++row) {
+		for (size_t col = 0; col < m_pixels.getCols(); ++col) {
+			m_pixels.getElementAt(row, col) /= m_maxColorValue; // TODO: Check if correct
+		}
+	}
+}
+
 void PGMImage::readRowsAndColsFromFileAndResizePixels(std::ifstream& file) {
 	ImageUtilities<std::uint16_t>::readParamsToResizeMatrixFromFile(file, m_pixels);
 }

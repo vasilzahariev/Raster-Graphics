@@ -26,6 +26,14 @@ void Session::rotate(std::string& direction) {
 		m_images[index]->rotate(direction);
 }
 
+void Session::monochrome() {
+	for (size_t index = 0; index < m_images.size(); ++index) {
+		if (!m_images[index]->isMonochrome()) {
+			m_images[index]->monochrome();
+		}
+	}
+}
+
 void Session::saveChanges() {
 	// TODO: PolymorphicIterator
 	for (size_t index = 0; index < m_images.size(); ++index) {

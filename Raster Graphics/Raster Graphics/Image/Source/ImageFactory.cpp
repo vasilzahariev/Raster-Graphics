@@ -3,11 +3,16 @@
 Image* ImageFactory::createImage(std::string_view fileName) {
     std::string type = extractTypeFromName(fileName);
 
+    // TODO: Create tolower function in a utility class and use it here
+
     if (type == "pbm")
         return new PBMImage(fileName);
-    // TODO: Add others
+    else if (type == "pgm")
+        return new PGMImage(fileName);
+    else if (type == "ppm")
+        return new PPMImage(fileName);
 
-    return nullptr;
+    throw ImageException("Invalid image type");
 }
 
 std::string ImageFactory::extractTypeFromName(std::string_view fileName) {

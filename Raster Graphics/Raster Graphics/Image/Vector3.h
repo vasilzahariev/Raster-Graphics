@@ -20,6 +20,7 @@ public:
 	void writeTo(std::ostream& out = std::cout) const;
 
 	void transformToGrayscale();
+	void normalizeByValue(const T value);
 };
 
 #endif // !VECTOR3_H
@@ -56,4 +57,11 @@ inline void Vector3<T>::transformToGrayscale() {
 	x = gray;
 	y = gray;
 	z = gray;
+}
+
+template<typename T>
+inline void Vector3<T>::normalizeByValue(const T value) {
+	x /= value;
+	y /= value;
+	z /= value;
 }

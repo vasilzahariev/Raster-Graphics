@@ -15,6 +15,8 @@
 #include "SaveAsCommand.h"
 #include "CloseCommand.h"
 #include "UndoCommand.h"
+#include "GrayscaleCommand.h"
+#include "MonochromeCommand.h"
 
 class CommandFactory {
 public:

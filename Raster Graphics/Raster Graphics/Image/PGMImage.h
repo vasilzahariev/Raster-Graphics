@@ -6,6 +6,7 @@
 #include "Image.h"
 
 class PGMImage : public Image {
+public:
 	PGMImage(std::string_view fileName);
 	PGMImage(const PGMImage& other);
 
@@ -17,6 +18,7 @@ class PGMImage : public Image {
 	void rotate(std::string direction) override;
 
 	void grayscale() override;
+	void monochrome() override;
 
 private:
 	Matrix<std::uint16_t> m_pixels;

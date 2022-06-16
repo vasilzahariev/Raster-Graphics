@@ -18,6 +18,7 @@ public:
 	void rotate(std::string direction) override;
 
 	void grayscale() override;
+	void monochrome() override;
 
 private:
 	static const std::uint16_t MAX_COLOR_VALUE = 1;

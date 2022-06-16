@@ -19,6 +19,7 @@ public:
 	void rotate(std::string& direction);
 
 	void grayscale();
+	void monochrome();
 
 	void saveChanges();
 	void saveAs(const std::string& fileName);

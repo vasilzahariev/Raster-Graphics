@@ -5,6 +5,8 @@
 
 #include "Image.h"
 #include "PBMImage.h"
+#include "PGMImage.h"
+#include "PPMImage.h"
 
 class ImageFactory {
 public:

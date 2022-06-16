@@ -38,6 +38,10 @@ void PBMImage::grayscale() {
 	throw ImageException("Monochrome Images cannot be grayscaled!");
 }
 
+void PBMImage::monochrome() {
+	throw ImageException("Cannot convert Monochrome image to monochrome");
+}
+
 void PBMImage::readRowsAndColsFromFileAndResizePixels(std::ifstream& file) {
 	ImageUtilities<std::uint16_t>::readParamsToResizeMatrixFromFile(file, m_pixels);
 }
