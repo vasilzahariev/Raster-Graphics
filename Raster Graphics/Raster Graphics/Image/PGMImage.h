@@ -19,6 +19,7 @@ public:
 
 	void grayscale() override;
 	void monochrome() override;
+	void negative() override;
 
 private:
 	Matrix<std::uint16_t> m_pixels;

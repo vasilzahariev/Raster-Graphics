@@ -11,6 +11,8 @@ Command* CommandFactory::createCommand(std::vector<std::string_view> args, Sessi
         return new GrayscaleCommand(sessionMaster->getActiveSession());
     else if (commandType == "monochrome")
         return new MonochromeCommand(sessionMaster->getActiveSession());
+    else if (commandType == "negative")
+        return new NegativeCommand(sessionMaster->getActiveSession());
     else if (commandType == "save")
         return new SaveCommand(sessionMaster->getActiveSession());
     else if (commandType == "saveas")

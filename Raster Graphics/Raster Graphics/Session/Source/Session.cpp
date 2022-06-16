@@ -41,6 +41,12 @@ void Session::saveChanges() {
 	}
 }
 
+void Session::negative() {
+	for (size_t index = 0; index < m_images.size(); ++index) {
+		m_images[index]->negative();
+	}
+}
+
 void Session::saveAs(const std::string& fileName) {
 	saveImageToFile(m_images[0], fileName);
 }

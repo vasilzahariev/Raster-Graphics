@@ -20,6 +20,7 @@ public:
 
 	void grayscale();
 	void monochrome();
+	void negative();
 
 	void saveChanges();
 	void saveAs(const std::string& fileName);

@@ -21,6 +21,7 @@ public:
 
 	void transformToGrayscale();
 	void normalizeByValue(const T value);
+	void transformToNegative(const T value);
 };
 
 #endif // !VECTOR3_H
@@ -64,4 +65,11 @@ inline void Vector3<T>::normalizeByValue(const T value) {
 	x /= value;
 	y /= value;
 	z /= value;
+}
+
+template<typename T>
+inline void Vector3<T>::transformToNegative(const T value) {
+	x = value - x;
+	y = value - y;
+	z = value - z;
 }

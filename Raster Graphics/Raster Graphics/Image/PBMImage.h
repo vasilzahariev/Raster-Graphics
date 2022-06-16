@@ -2,6 +2,7 @@
 #define PBMIMAGE_H
 
 #include <algorithm>
+#include <cmath>
 
 #include "Image.h"
 
@@ -19,6 +20,7 @@ public:
 
 	void grayscale() override;
 	void monochrome() override;
+	void negative() override;
 
 private:
 	static const std::uint16_t MAX_COLOR_VALUE = 1;

@@ -17,6 +17,7 @@
 #include "UndoCommand.h"
 #include "GrayscaleCommand.h"
 #include "MonochromeCommand.h"
+#include "NegativeCommand.h"
 
 class CommandFactory {
 public:

@@ -50,6 +50,16 @@ void PGMImage::monochrome() {
 	}
 }
 
+void PGMImage::negative() {
+	for (size_t row = 0; row < m_pixels.getRows(); ++row) {
+		for (size_t col = 0; col < m_pixels.getCols(); ++col) {
+			std::uint16_t& pixel = m_pixels.getElementAt(row, col);
+
+			pixel = m_maxColorValue - pixel;
+		}
+	}
+}
+
 void PGMImage::readRowsAndColsFromFileAndResizePixels(std::ifstream& file) {
 	ImageUtilities<std::uint16_t>::readParamsToResizeMatrixFromFile(file, m_pixels);
 }

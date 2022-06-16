@@ -52,6 +52,14 @@ void PPMImage::monochrome() {
 	}
 }
 
+void PPMImage::negative() {
+	for (size_t row = 0; row < m_pixels.getRows(); ++row) {
+		for (size_t col = 0; col < m_pixels.getCols(); ++col) {
+			m_pixels.getElementAt(row, col).transformToNegative(m_maxColorValue);
+		}
+	}
+}
+
 void PPMImage::readRowsAndColsFromFileAndResizePixels(std::ifstream& file) {
 	ImageUtilities<Vector3<std::uint16_t>>::readParamsToResizeMatrixFromFile(file, m_pixels);
 }
