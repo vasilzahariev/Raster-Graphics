@@ -1,10 +1,16 @@
 #include "../Image.h"
 
 Image::Image(std::string_view fileName, const bool grayscale, const bool monochrome, const std::uint16_t maxColorValue)
-	: m_fileName(fileName), bGrayscale(grayscale), bMonochrome(monochrome), m_maxColorValue(maxColorValue) {
+	: m_fileName(fileName), bGrayscale(grayscale), bMonochrome(monochrome), m_maxColorValue(maxColorValue), m_previousVersion(nullptr) {
 }
 
-std::string_view Image::getFileName() const {
+Image::Image(const Image& other)
+	: m_fileName(other.m_fileName), m_comments(other.m_comments), m_magicNumber(other.m_magicNumber),
+	  m_maxColorValue(other.m_magicNumber), bGrayscale(other.bGrayscale), bMonochrome(bMonochrome),
+	  m_previousVersion(other.m_previousVersion) {
+}
+
+std::string Image::getFileName() const {
 	return m_fileName;
 }
 
@@ -53,4 +59,12 @@ void Image::writeCommentLineToFile(std::ofstream& file, std::string_view comment
 
 void Image::writeMaxColorValue(std::ofstream& file) const {
 	file << m_maxColorValue << '\n';
+}
+
+void Image::clearPreviousVersions() {
+	if (m_previousVersion == nullptr) return;
+
+	m_previousVersion->clearPreviousVersions();
+
+	delete m_previousVersion;
 }

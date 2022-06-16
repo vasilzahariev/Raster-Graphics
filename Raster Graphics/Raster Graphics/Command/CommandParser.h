@@ -12,6 +12,10 @@
 
 class CommandParser {
 public:
+	CommandParser() = delete;
+	CommandParser(const CommandParser&) = delete;
+	CommandParser& operator=(const CommandParser&) = delete;
+
 	static Command* parseCommandLine(std::string line, SessionMaster* sessionMaster);
 
 private:

@@ -4,8 +4,12 @@ PBMImage::PBMImage(std::string_view fileName)
 	: Image(fileName, false, true, MAX_COLOR_VALUE) {
 }
 
+PBMImage::PBMImage(const PBMImage& other)
+	: Image(other), m_pixels(other.m_pixels) {
+}
+
 PBMImage* PBMImage::clone() {
-	return new PBMImage(m_fileName);
+	return new PBMImage(*this);
 }
 
 void PBMImage::readFromFile(std::ifstream& file) {
@@ -15,14 +19,17 @@ void PBMImage::readFromFile(std::ifstream& file) {
 	m_pixels.readFromFile(file);
 }
 
-void PBMImage::writeToFile(std::ofstream& file) const {
+void PBMImage::writeToFile(std::ofstream& file) {
 	writeMagicNumberToFile(file);
 	writeCommentsToFile(file);
 	writeRowsAndColsToFile(file);
 	m_pixels.writeToFile(file);
+
+	clearPreviousVersions();
 }
 
 void PBMImage::rotate(std::string direction) {
+	m_previousVersion = clone();
 	std::transform(direction.begin(), direction.end(), direction.begin(), [](unsigned char c) { return std::tolower(c); });
 
 	TODO: if (direction == "left")

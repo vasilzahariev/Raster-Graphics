@@ -10,6 +10,10 @@
 #include "Command.h"
 #include "OpenCommand.h"
 #include "HelpCommand.h"
+#include "RotateCommand.h"
+#include "SaveCommand.h"
+#include "SaveAsCommand.h"
+#include "CloseCommand.h"
 
 class CommandFactory {
 public:

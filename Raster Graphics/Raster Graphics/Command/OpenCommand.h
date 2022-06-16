@@ -17,6 +17,8 @@ public:
 
 	void execute() override;
 
+	OpenCommand* clone() override;
+
 private:
 	std::string m_fileLocation;
 	SessionMaster* const m_sessionMaster;

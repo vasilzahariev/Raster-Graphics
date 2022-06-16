@@ -7,6 +7,8 @@
 class HelpCommand : public Command {
 public:
 	void execute() override;
+
+	HelpCommand* clone() override;
 };
 
 #endif // !HELPCOMMAND_H

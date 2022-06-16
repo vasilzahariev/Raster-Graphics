@@ -1,4 +1,4 @@
-#include "SessionMaster.h"
+#include "../SessionMaster.h"
 
 SessionMaster::SessionMaster()
 	: m_activeSession(nullptr) {

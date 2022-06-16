@@ -23,3 +23,7 @@ void OpenCommand::execute() {
 
 	file.close();
 }
+
+OpenCommand* OpenCommand::clone() {
+	return new OpenCommand(m_sessionMaster, m_fileLocation);
+}

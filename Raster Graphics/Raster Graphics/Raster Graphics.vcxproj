@@ -139,20 +139,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Command\CloseCommand.cpp" />
+    <ClCompile Include="Command\Source\SaveAsCommand.cpp" />
+    <ClCompile Include="Command\Source\SaveCommand.cpp" />
+    <ClCompile Include="Command\Source\RotateCommand.cpp" />
     <ClCompile Include="Command\Source\CommandFactory.cpp" />
     <ClCompile Include="Command\Source\HelpCommand.cpp" />
     <ClCompile Include="Command\Source\CommandParser.cpp" />
     <ClCompile Include="Command\Source\OpenCommand.cpp" />
     <ClCompile Include="Engine\Source\Engine.cpp" />
+    <ClCompile Include="Exceptions\Source\ImageException.cpp" />
     <ClCompile Include="Exceptions\Source\CommandException.cpp" />
     <ClCompile Include="Exceptions\Source\FileException.cpp" />
     <ClCompile Include="Exceptions\Source\OutOfBoundsException.cpp" />
     <ClCompile Include="Exceptions\Source\SessionException.cpp" />
+    <ClCompile Include="Image\ImageFactory.cpp" />
     <ClCompile Include="Image\Source\Image.cpp" />
     <ClCompile Include="Image\Source\PBMImage.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PolymorphicVector\PolymorphicVector.cpp" />
-    <ClCompile Include="Session\SessionMaster.cpp" />
+    <ClCompile Include="Session\Source\SessionMaster.cpp" />
     <ClCompile Include="Session\Source\Session.cpp" />
     <ClCompile Include="String\Source\String.cpp" />
     <ClCompile Include="Tests\CommandParserTests.cpp" />
@@ -160,17 +166,25 @@
     <ClCompile Include="Tests\Vector3Tests.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Command\CloseCommand.h" />
     <ClInclude Include="Command\Command.h" />
+    <ClInclude Include="Command\CommandExecutionType.h" />
     <ClInclude Include="Command\CommandFactory.h" />
     <ClInclude Include="Command\CommandParser.h" />
     <ClInclude Include="Command\HelpCommand.h" />
     <ClInclude Include="Command\OpenCommand.h" />
+    <ClInclude Include="Command\RotateCommand.h" />
+    <ClInclude Include="Command\SaveAsCommand.h" />
+    <ClInclude Include="Command\SaveCommand.h" />
+    <ClInclude Include="Command\UndoCommand.h" />
     <ClInclude Include="Engine\Engine.h" />
     <ClInclude Include="Exceptions\CommandException.h" />
     <ClInclude Include="Exceptions\FileException.h" />
+    <ClInclude Include="Exceptions\ImageException.h" />
     <ClInclude Include="Exceptions\OutOfBoundsException.h" />
     <ClInclude Include="Exceptions\SessionException.h" />
     <ClInclude Include="Image\Image.h" />
+    <ClInclude Include="Image\ImageFactory.h" />
     <ClInclude Include="Image\Matrix.h" />
     <ClInclude Include="Image\PBMImage.h" />
     <ClInclude Include="Image\Vector3.h" />

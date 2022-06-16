@@ -1,0 +1,10 @@
+#ifndef COMMANDEXECUTIONTYPE_H
+#define COMMANDEXECUTIONTYPE_H
+
+enum class CommandExecutionType {
+	FILE,
+	IMAGE,
+	EXECUTE
+};
+
+#endif // !COMMANDEXECUTIONTYPE_H

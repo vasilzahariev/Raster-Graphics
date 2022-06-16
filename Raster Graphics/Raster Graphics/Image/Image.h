@@ -11,7 +11,7 @@
 
 class Image : public ICloneable {
 public:
-	std::string_view getFileName() const;
+	std::string getFileName() const;
 
 	bool isGrayscale() const;
 	bool isMonochrome() const;
@@ -19,12 +19,13 @@ public:
 	virtual Image* clone() = 0;
 
 	virtual void readFromFile(std::ifstream& file) = 0;
-	virtual void writeToFile(std::ofstream& file) const = 0;
+	virtual void writeToFile(std::ofstream& file) = 0;
 
 	virtual void rotate(std::string direction) = 0;
 
 protected:
 	Image(std::string_view fileName, const bool grayscale = false, const bool monochrome = false, const std::uint16_t maxColorValue = 0);
+	Image(const Image& other);
 
 protected:
 	std::string m_fileName;
@@ -33,6 +34,7 @@ protected:
 	std::uint16_t m_maxColorValue;
 	bool bGrayscale;
 	bool bMonochrome;
+	Image* m_previousVersion;
 
 protected:
 	void readMagicNumberFromFile(std::ifstream& file);
@@ -46,6 +48,8 @@ protected:
 	void writeCommentLineToFile(std::ofstream& file, std::string_view comment) const;
 	void writeMaxColorValue(std::ofstream& file) const;
 	virtual void writeRowsAndColsToFile(std::ofstream& file) const = 0;
+
+	void clearPreviousVersions();
 };
 
 #endif // !IMAGE_H

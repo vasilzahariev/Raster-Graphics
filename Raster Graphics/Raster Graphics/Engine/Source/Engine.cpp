@@ -11,6 +11,8 @@ Engine& Engine::getInstance() {
 
 void Engine::run() {
 	std::string line;
+
+	// TODO: Catch Errors
 	
 	do {
 		std::cout << '>';
@@ -19,7 +21,7 @@ void Engine::run() {
 
 		if (cmd == nullptr)
 			throw CommandException("Invalid input arguments");
-
+		
 		cmd->execute();
 	} while (true);
 }

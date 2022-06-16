@@ -8,11 +8,12 @@
 class PBMImage : public Image {
 public:
 	PBMImage(std::string_view fileName);
+	PBMImage(const PBMImage& other);
 
 	PBMImage* clone() override;
 
 	void readFromFile(std::ifstream& file) override;
-	void writeToFile(std::ofstream& file) const override;
+	void writeToFile(std::ofstream& file) override;
 
 	void rotate(std::string direction) override;
 

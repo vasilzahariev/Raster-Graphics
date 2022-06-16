@@ -18,3 +18,7 @@ void HelpCommand::execute() {
 	std::cout << "help													prints information about every command" << std::endl;
 	std::cout << "exit													exits the program" << std::endl;
 }
+
+HelpCommand* HelpCommand::clone() {
+	return new HelpCommand();
+}

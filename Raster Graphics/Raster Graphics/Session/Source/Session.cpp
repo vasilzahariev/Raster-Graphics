@@ -22,3 +22,33 @@ void Session::grayscale() {
 void Session::addImage(Image* image) {
 	m_images.push_back(image);
 }
+
+void Session::rotate(std::string& direction) {
+	for (size_t index = 0; index < m_images.size(); ++index)
+		m_images[index]->rotate(direction);
+}
+
+void Session::saveChanges() {
+	// TODO: PolymorphicIterator
+	for (size_t index = 0; index < m_images.size(); ++index) {
+		saveImageToFile(m_images[index], m_images[index]->getFileName());
+	}
+}
+
+void Session::saveAs(const std::string& fileName) {
+	saveImageToFile(m_images[0], fileName);
+}
+
+void Session::close() {
+	// TODO: PolymorphicIterator
+
+	for (size_t index = 0; index < m_images.size(); ++index) {
+		// TODO: m_images[index]->revertBackToNormal();
+	}
+}
+
+void Session::saveImageToFile(Image* image, const std::string& fileName) {
+	std::ofstream file(fileName);
+
+	image->writeToFile(file);
+}
