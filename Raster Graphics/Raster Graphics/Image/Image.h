@@ -1,5 +1,4 @@
-#ifndef IMAGE_H
-#define IMAGE_H
+#pragma once
 
 #include <fstream>
 #include <string>
@@ -64,5 +63,3 @@ protected:
 
 	virtual void copy(Image* const image);
 };
-
-#endif // !IMAGE_H

@@ -1,5 +1,4 @@
-#ifndef SESSIONMASTER_H
-#define SESSIONMASTER_H
+#pragma once
 
 #include <vector>
 
@@ -20,5 +19,3 @@ private:
 	Session* m_activeSession;
 	std::vector<Session> m_sessions;
 };
-
-#endif // !SESSIONMASTER_H

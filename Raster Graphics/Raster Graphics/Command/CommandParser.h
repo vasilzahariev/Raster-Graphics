@@ -1,5 +1,4 @@
-#ifndef COMMANDPARSER_H
-#define COMMANDPARSER_H
+#pragma once
 
 #include <string>
 #include <string_view>
@@ -25,5 +24,3 @@ private:
 
 	static void extractArgsFromCommandLine(std::string_view line, std::vector<std::string_view>& args);
 };
-
-#endif // !COMMANDPARSER_H

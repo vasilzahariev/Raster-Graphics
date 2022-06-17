@@ -1,18 +1,14 @@
-#ifndef SESSIONEXCEPTION_H
-#define SESSIONEXCEPTION_H
+#pragma once
 
 #include <iostream>
 #include <string>
-#include <string_view>
 
 class SessionException : public std::exception {
 public:
-	SessionException(std::string_view message);
+	SessionException(const std::string& message);
 
 	const char* what() const noexcept override final;
 
 private:
 	std::string m_message;
 };
-
-#endif // !SESSIONEXCEPTION_H

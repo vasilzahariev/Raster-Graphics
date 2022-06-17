@@ -1,5 +1,4 @@
-#ifndef ENGINE_H
-#define ENGINE_H
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -20,5 +19,3 @@ private:
 
 	SessionMaster m_sessionMaster;
 };
-
-#endif // !ENGINE_H

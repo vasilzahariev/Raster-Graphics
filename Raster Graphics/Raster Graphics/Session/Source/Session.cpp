@@ -93,7 +93,7 @@ std::string Session::info(std::ostream& out) const {
 	infoStr += '\n';
 
 	infoStr += "Pending transformations: ";
-	for (std::vector<const std::string>::const_iterator unsavedChange = m_unsavedChanges.begin(); unsavedChange != m_unsavedChanges.end(); ++unsavedChange)
+	for (std::vector<std::string>::const_iterator unsavedChange = m_unsavedChanges.begin(); unsavedChange != m_unsavedChanges.end(); ++unsavedChange)
 		infoStr += *unsavedChange + ' ';
 	infoStr += '\n';
 

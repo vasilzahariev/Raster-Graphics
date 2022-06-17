@@ -1,5 +1,4 @@
-#ifndef OPENCOMMAND_H
-#define OPENCOMMAND_H
+#pragma once
 
 #include <string>
 #include <string_view>
@@ -21,5 +20,3 @@ private:
 	std::string m_fileLocation;
 	SessionMaster* const m_sessionMaster;
 };
-
-#endif // !OPENCOMMAND_H

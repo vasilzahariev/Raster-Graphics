@@ -1,5 +1,4 @@
-#ifndef PBMIMAGE_H
-#define PBMIMAGE_H
+#pragma once
 
 #include <algorithm>
 #include <cmath>
@@ -34,5 +33,3 @@ private:
 
 	void copy(Image* const image) override;
 };
-
-#endif // !PBMIMAGE_H

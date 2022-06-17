@@ -1,5 +1,4 @@
-#ifndef MONOCHROMECOMMAND_H
-#define MONOCHROMECOMMAND_H
+#pragma once
 
 #include "Command.h"
 #include "../Session/Session.h"
@@ -13,5 +12,3 @@ public:
 private:
 	Session* const m_session;
 };
-
-#endif // !MONOCHROMECOMMAND_H

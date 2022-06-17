@@ -1,6 +1,6 @@
 #include "../ImageException.h"
 
-ImageException::ImageException(std::string_view message)
+ImageException::ImageException(const std::string& message)
 	:m_message(message) {
 }
 

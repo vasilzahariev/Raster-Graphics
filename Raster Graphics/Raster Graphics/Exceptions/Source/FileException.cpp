@@ -1,6 +1,6 @@
 #include "../FileException.h"
 
-FileException::FileException(std::string_view message)
+FileException::FileException(const std::string& message)
 	: m_message(message) {
 }
 

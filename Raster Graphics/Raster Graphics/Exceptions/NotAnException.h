@@ -1,5 +1,4 @@
-#ifndef NOTANEXCEPTION_H
-#define NOTANEXCEPTION_H
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -13,5 +12,3 @@ public:
 private:
 	std::string m_message;
 };
-
-#endif // !NOTANEXCEPTION_H

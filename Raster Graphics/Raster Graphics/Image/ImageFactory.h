@@ -1,5 +1,4 @@
-#ifndef IMAGEFACTORY_H
-#define IMAGEFACTORY_H
+#pragma once
 
 #include <string_view>
 
@@ -19,5 +18,3 @@ public:
 private:
 	static std::string extractTypeFromName(std::string_view fileName);
 };
-
-#endif // !IMAGEFACTORY_H

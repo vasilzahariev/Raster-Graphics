@@ -1,5 +1,4 @@
-#ifndef IMAGEUTILITIES_H
-#define IMAGEUTILITIES_H
+#pragma once
 
 #include <fstream>
 #include <algorithm>
@@ -15,8 +14,6 @@ public:
 
 	static void writePixelsRowsAndColsToFile(std::ofstream& file, const Matrix<T>& pixels);
 };
-
-#endif // !IMAGEUTILITIES_H
 
 template<typename T>
 inline void ImageUtilities<T>::readParamsToResizeMatrixFromFile(std::ifstream& file, Matrix<T>& pixels) {

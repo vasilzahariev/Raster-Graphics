@@ -1,5 +1,4 @@
-#ifndef ADDCOMMAND_H
-#define ADDCOMMAND_H
+#pragma once
 
 #include <fstream>
 
@@ -18,5 +17,3 @@ private:
 	Session* const m_session;
 	mutable std::string m_fileLocation;
 };
-
-#endif // !ADDCOMMAND_H

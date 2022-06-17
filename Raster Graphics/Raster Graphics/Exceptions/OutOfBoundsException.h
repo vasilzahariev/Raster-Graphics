@@ -1,7 +1,7 @@
-#ifndef OUTOFBOUNDSEXCEPTION
-#define OUTOFBOUNDSEXCEPTION
+#pragma once
 
 #include <iostream>
+#include <string>
 
 class OutOfBoundsException : public std::exception {
 public:
@@ -12,5 +12,3 @@ public:
 private:
 	std::string m_message;
 };
-
-#endif // !OUTOFBOUNDSEXCEPTION

@@ -1,5 +1,4 @@
-#ifndef SAVEASCOMMAND_H
-#define SAVEASCOMMAND_H
+#pragma once
 
 #include "../Session/Session.h"
 #include "Command.h"
@@ -14,5 +13,3 @@ private:
 	Session* const m_session;
 	std::string m_fileName;
 };
-
-#endif // !SAVEASCOMMAND_H

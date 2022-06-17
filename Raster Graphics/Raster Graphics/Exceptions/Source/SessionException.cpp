@@ -1,6 +1,6 @@
 #include "../SessionException.h"
 
-SessionException::SessionException(std::string_view message)
+SessionException::SessionException(const std::string& message)
 	: m_message(message) {
 }
 

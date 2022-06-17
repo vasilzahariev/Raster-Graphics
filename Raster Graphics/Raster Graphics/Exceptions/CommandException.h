@@ -1,5 +1,4 @@
-#ifndef COMMANDEXCEPTION_H
-#define COMMANDEXCEPTION_H
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -13,5 +12,3 @@ public:
 private:
 	std::string m_message;
 };
-
-#endif // !COMMANDEXCEPTION_H

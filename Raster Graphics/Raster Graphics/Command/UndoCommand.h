@@ -1,5 +1,4 @@
-#ifndef UNDOCOMMAND_H
-#define UNDOCOMMAND_H
+#pragma once
 
 #include "Command.h"
 #include "../Session/Session.h"
@@ -13,5 +12,3 @@ public:
 private:
 	Session* const m_session;
 };
-
-#endif // !UNDOCOMMAND_H

@@ -1,5 +1,4 @@
-#ifndef COMMANDFACTORY_H
-#define COMMANDFACTORY_H
+#pragma once
 
 #include <vector>
 #include <string>
@@ -29,5 +28,3 @@ private:
 	CommandFactory(const CommandFactory&) = delete;
 	CommandFactory& operator=(const CommandFactory&) = delete;
 };
-
-#endif // !COMMANDFACTORY_H

@@ -1,5 +1,4 @@
-#ifndef POLYMORPHICVECTOR_H
-#define POLYMORPHICVECTOR_H
+#pragma once
 
 #include <iostream>
 
@@ -34,8 +33,6 @@ private:
 
 	T* getElementAtIndex(const int index) const;
 };
-
-#endif // !POLYMORPHICVECTOR_H
 
 template<class T>
 inline PolymorphicVector<T>::PolymorphicVector()

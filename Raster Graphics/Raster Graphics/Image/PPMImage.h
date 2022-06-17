@@ -1,5 +1,4 @@
-#ifndef PPMIMAGE_H
-#define PPMIMAGE_H
+#pragma once
 
 #include "Image.h"
 #include "Vector3.h"
@@ -29,5 +28,3 @@ private:
 
 	void copy(Image* const image) override;
 };
-
-#endif // !PPMIMAGE_H

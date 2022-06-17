@@ -1,5 +1,4 @@
-#ifndef SESSION_H
-#define SESSION_H
+#pragma once
 
 #include <iostream>
 
@@ -38,9 +37,7 @@ public:
 private:
 	int nId;
 	PolymorphicVector<Image> m_images;
-	std::vector<const std::string> m_unsavedChanges;
+	std::vector<std::string> m_unsavedChanges;
 
 	void saveImageToFile(Image* image, const std::string& fileName);
 };
-
-#endif // !SESSION_H

@@ -1,5 +1,4 @@
-#ifndef ROTATECOMMAND_H
-#define ROTATECOMMAND_H
+#pragma once
 
 #include <string_view>
 
@@ -16,5 +15,3 @@ private:
 	Session* const m_session;
 	std::string m_direction;
 };
-
-#endif // !ROTATECOMMAND_H
