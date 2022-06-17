@@ -5,5 +5,16 @@ NegativeCommand::NegativeCommand(Session* const session)
 }
 
 std::string NegativeCommand::execute() {
-	m_session->negative();// TODO: Add try catch and return the proper message
+	std::string output = "";
+
+	try {
+		m_session->negative();
+		
+		output = "Negative was successful";
+	}
+	catch (std::exception err) {
+		output = err.what();
+	}
+
+	return output;
 }

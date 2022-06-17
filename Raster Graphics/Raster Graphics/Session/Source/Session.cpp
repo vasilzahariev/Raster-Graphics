@@ -70,7 +70,7 @@ void Session::close() {
 }
 
 void Session::undo() {
-	for (size_t index = 0; index < m_images.size(); ++index)
+	for (size_t index = m_images.size() - 1; index >= 0; --index)
 		m_images[index]->undo();
 
 	m_unsavedChanges.pop_back();

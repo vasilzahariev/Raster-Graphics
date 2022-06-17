@@ -5,5 +5,16 @@ SaveAsCommand::SaveAsCommand(Session* const session, std::string_view fileName)
 }
 
 std::string SaveAsCommand::execute() {
-	m_session->saveAs(m_fileName);// TODO: Add try catch and return the proper message
+	std::string output = "";
+
+	try {
+		m_session->saveAs(m_fileName);
+		
+		output = "SaveAs was successful";
+	}
+	catch (std::exception err) {
+		output = err.what();
+	}
+
+	return output;
 }

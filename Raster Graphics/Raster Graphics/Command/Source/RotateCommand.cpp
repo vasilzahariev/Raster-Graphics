@@ -5,5 +5,16 @@ RotateCommand::RotateCommand(Session* const sessionMaster, std::string_view dire
 }
 
 std::string RotateCommand::execute() {
-	m_session->rotate(m_direction);// TODO: Add try catch and return the proper message
+	std::string output = "";
+
+	try {
+		m_session->rotate(m_direction);
+
+		output = "SaveAs was successful";
+	}
+	catch (std::exception err) {
+		output = err.what();
+	}
+
+	return output;
 }

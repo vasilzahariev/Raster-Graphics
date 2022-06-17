@@ -5,5 +5,16 @@ CloseCommand::CloseCommand(Session* const session)
 }
 
 std::string CloseCommand::execute() {
-	m_session->close();// TODO: Add try catch and return the proper message
+	std::string output = "";
+
+	try {
+		m_session->close();
+
+		output = "Close was successful";
+	}
+	catch (std::exception err) {
+		output = err.what();
+	}
+
+	return output;
 }

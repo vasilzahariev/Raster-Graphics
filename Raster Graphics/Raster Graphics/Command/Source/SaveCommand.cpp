@@ -5,5 +5,16 @@ SaveCommand::SaveCommand(Session* const session)
 }
 
 std::string SaveCommand::execute() {
-    m_session->saveChanges();// TODO: Add try catch and return the proper message
+    std::string output = "";
+
+    try {
+        m_session->saveChanges();
+
+        output = "Save was successful";
+    }
+    catch (std::exception err) {
+        output = err.what();
+    }
+
+    return output;
 }

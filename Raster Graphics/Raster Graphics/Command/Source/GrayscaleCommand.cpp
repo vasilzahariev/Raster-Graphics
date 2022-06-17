@@ -5,5 +5,16 @@ GrayscaleCommand::GrayscaleCommand(Session* const session)
 }
 
 std::string GrayscaleCommand::execute() {
-	m_session->grayscale();// TODO: Add try catch and return the proper message
+	std::string output = "";
+
+	try {
+		m_session->grayscale();
+
+		output = "Grayscale was successful";
+	}
+	catch (std::exception err) {
+		output = err.what();
+	}
+
+	return output;
 }

@@ -5,21 +5,32 @@ OpenCommand::OpenCommand(SessionMaster* const sessionMaster, std::string_view fi
 }
 
 std::string OpenCommand::execute() {
-	std::ifstream file(m_fileLocation);
+	std::string output = "";
 
-	if (!file.is_open())
-		throw FileException("File \"" + m_fileLocation + "\" didn't open correctly");
+	try {
+		std::ifstream file(m_fileLocation);
 
-	m_sessionMaster->addSession(Session());
+		if (!file.is_open())
+			throw FileException("File \"" + m_fileLocation + "\" didn't open correctly");
 
-	Image* image = ImageFactory::createImage(m_fileLocation);
+		m_sessionMaster->addSession(Session());
 
-	if (image == nullptr)
-		throw ImageException("Image creation failed");
+		Image* image = ImageFactory::createImage(m_fileLocation);
 
-	image->readFromFile(file);
+		if (image == nullptr)
+			throw ImageException("Image creation failed");
 
-	m_sessionMaster->getActiveSession()->addImage(image);
+		image->readFromFile(file);
 
-	file.close();// TODO: Add try catch and return the proper message
+		m_sessionMaster->getActiveSession()->addImage(image);
+
+		file.close();// TODO: Add try catch and return the proper message
+
+		output = "Session with ID: " + std::to_string(m_sessionMaster->getActiveSession()->getId()) + " was created successfuly. File was also added successfuly";
+	}
+	catch (std::exception err) {
+		output = err.what();
+	}
+
+	return output;
 }

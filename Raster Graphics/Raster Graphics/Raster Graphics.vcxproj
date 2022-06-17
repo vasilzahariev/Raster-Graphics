@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Command\Source\AddCommand.cpp" />
     <ClCompile Include="Command\Source\SessionInfoCommand.cpp" />
     <ClCompile Include="Command\Source\NegativeCommand.cpp" />
     <ClCompile Include="Command\Source\MonochromeCommand.cpp" />
@@ -174,6 +175,7 @@
     <ClCompile Include="Tests\Vector3Tests.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Command\AddCommand.h" />
     <ClInclude Include="Command\CloseCommand.h" />
     <ClInclude Include="Command\Command.h" />
     <ClInclude Include="Command\CommandExecutionType.h" />

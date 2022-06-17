@@ -5,5 +5,16 @@ MonochromeCommand::MonochromeCommand(Session* const session)
 }
 
 std::string MonochromeCommand::execute() {
-	m_session->monochrome();// TODO: Add try catch and return the proper message
+	std::string output = "";
+
+	try {
+		m_session->monochrome();
+
+		output = "Monochrome was successful";
+	}
+	catch (std::exception err) {
+		output = err.what();
+	}
+
+	return output;
 }

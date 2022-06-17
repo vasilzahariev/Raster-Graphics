@@ -5,5 +5,16 @@ UndoCommand::UndoCommand(Session* const session)
 }
 
 std::string UndoCommand::execute() {
-	m_session->undo(); // TODO: Add try catch and return the proper message
+	std::string output = "";
+	
+	try {
+		m_session->undo();
+		
+		output = "Undo was successful";
+	}
+	catch (std::exception err) {
+		output = err.what();
+	}
+
+	return output;
 }
