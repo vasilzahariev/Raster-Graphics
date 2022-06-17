@@ -5,7 +5,8 @@ void Image::undo() {
 }
 
 void Image::removeUnsavedChanges() {
-	clearPreviousVersions();
+	// TODO: Go to the end of the reccursion and set the image to be equal to it
+	//clearPreviousVersions();
 }
 
 Image::Image(std::string_view fileName, const bool grayscale, const bool monochrome, const std::uint16_t maxColorValue)

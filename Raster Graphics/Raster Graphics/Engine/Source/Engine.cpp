@@ -17,7 +17,7 @@ void Engine::run() {
 	do {
 		std::cout << '>';
 		std::getline(std::cin, line);
-		Command* cmd = CommandParser::parseCommandLine(line, &m_sessionMaster);
+		Command* cmd = CommandParser::parseCommandLine(line, &m_sessionMaster); // TODO: Catch incomming exception if the command is invalid
 
 		if (cmd == nullptr)
 			throw CommandException("Invalid input arguments");

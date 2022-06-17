@@ -13,6 +13,8 @@ Command* CommandFactory::createCommand(std::vector<std::string_view> args, Sessi
         return new MonochromeCommand(sessionMaster->getActiveSession());
     else if (commandType == "negative")
         return new NegativeCommand(sessionMaster->getActiveSession());
+    else if (commandType == "add")
+        return new AddCommand(sessionMaster->getActiveSession(), args[1]);
     else if (commandType == "save")
         return new SaveCommand(sessionMaster->getActiveSession());
     else if (commandType == "saveas")

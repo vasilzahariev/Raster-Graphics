@@ -18,6 +18,7 @@
 #include "GrayscaleCommand.h"
 #include "MonochromeCommand.h"
 #include "NegativeCommand.h"
+#include "AddCommand.h"
 
 class CommandFactory {
 public:

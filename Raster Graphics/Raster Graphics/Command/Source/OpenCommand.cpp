@@ -8,7 +8,7 @@ std::string OpenCommand::execute() {
 	std::ifstream file(m_fileLocation);
 
 	if (!file.is_open())
-		throw FileException("File didn't open correctly");
+		throw FileException("File \"" + m_fileLocation + "\" didn't open correctly");
 
 	m_sessionMaster->addSession(Session());
 
