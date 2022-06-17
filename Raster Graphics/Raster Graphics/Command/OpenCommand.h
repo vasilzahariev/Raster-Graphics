@@ -7,7 +7,7 @@
 #include "../Image/Image.h"
 #include "../Exceptions/FileException.h"
 #include "../Session/SessionMaster.h"
-#include "../Image/ImageFactory.h"
+#include "../Factories/ImageFactory.h"
 #include "../Exceptions/ImageException.h"
 
 class OpenCommand : public Command {

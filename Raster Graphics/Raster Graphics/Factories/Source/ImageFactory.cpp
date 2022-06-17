@@ -3,7 +3,7 @@
 Image* ImageFactory::createImage(std::string_view fileName) {
     std::string type = extractTypeFromName(fileName);
 
-    // TODO: Create tolower function in a utility class and use it here
+    RasterGraphicsUtility::toLowerString(type);
 
     if (type == "pbm")
         return new PBMImage(fileName);
@@ -12,7 +12,7 @@ Image* ImageFactory::createImage(std::string_view fileName) {
     else if (type == "ppm")
         return new PPMImage(fileName);
 
-    throw ImageException("Invalid image type");
+    throw FileException("Invalid image type");
 }
 
 std::string ImageFactory::extractTypeFromName(std::string_view fileName) {

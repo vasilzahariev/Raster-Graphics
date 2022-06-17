@@ -4,7 +4,7 @@
 #include <fstream>
 #include <cstdint>
 
-#include "Vector3.h"
+#include "RGBData.h"
 #include "../Exceptions/OutOfBoundsException.h"
 
 template <typename T>

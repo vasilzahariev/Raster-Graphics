@@ -2,10 +2,12 @@
 
 #include <string_view>
 
-#include "Image.h"
-#include "PBMImage.h"
-#include "PGMImage.h"
-#include "PPMImage.h"
+#include "../Image/Image.h"
+#include "../Image/PBMImage.h"
+#include "../Image/PGMImage.h"
+#include "../Image/PPMImage.h"
+#include "../Exceptions/FileException.h"
+#include "../Utilities/RasterGraphicsUtility.h"
 
 class ImageFactory {
 public:

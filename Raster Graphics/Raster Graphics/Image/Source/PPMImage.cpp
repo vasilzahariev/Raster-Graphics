@@ -35,7 +35,7 @@ void PPMImage::writeToFile(std::ofstream& file) {
 void PPMImage::rotate(std::string direction) {
 	m_previousVersion = clone();
 
-	ImageUtilities<Vector3<std::uint16_t>>::rotatePixels(direction, m_pixels);
+	ImageUtilities<RGBData>::rotatePixels(direction, m_pixels);
 }
 
 void PPMImage::grayscale() {
@@ -61,11 +61,11 @@ void PPMImage::negative() {
 }
 
 void PPMImage::readRowsAndColsFromFileAndResizePixels(std::ifstream& file) {
-	ImageUtilities<Vector3<std::uint16_t>>::readParamsToResizeMatrixFromFile(file, m_pixels);
+	ImageUtilities<RGBData>::readParamsToResizeMatrixFromFile(file, m_pixels);
 }
 
 void PPMImage::writeRowsAndColsToFile(std::ofstream& file) const {
-	ImageUtilities<Vector3<std::uint16_t>>::writePixelsRowsAndColsToFile(file, m_pixels);
+	ImageUtilities<RGBData>::writePixelsRowsAndColsToFile(file, m_pixels);
 }
 
 void PPMImage::copy(Image* const image) {

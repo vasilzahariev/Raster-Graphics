@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Image.h"
-#include "Vector3.h"
+#include "../ImageData/RGBData.h"
 
 class PPMImage : public Image {
 public:
@@ -20,7 +20,7 @@ public:
 	void negative() override;
 
 private:
-	Matrix<Vector3<std::uint16_t>> m_pixels;
+	Matrix<RGBData> m_pixels;
 
 	void readRowsAndColsFromFileAndResizePixels(std::ifstream& file) override;
 

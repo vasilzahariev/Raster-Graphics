@@ -1,11 +1,11 @@
 #include "doctest.h"
 
-#include "../Image/Matrix.h"
+#include "../ImageData/Matrix.h"
 
 #include <cstdint>
 
 typedef Matrix<std::uint16_t> BasicMatrix;
-typedef Matrix<Vector3<std::uint16_t>> VectorMatrix;
+typedef Matrix<RGBData> VectorMatrix;
 
 TEST_CASE("Basic Matrix") {
 	SUBCASE("Should create an empty matrix") {
@@ -184,7 +184,7 @@ TEST_CASE("Vector Matrix") {
 
 		for (size_t row = 0; row < matrix.getRows(); ++row)
 			for (size_t col = 0; col < matrix.getCols(); ++col)
-				REQUIRE(matrix.getElementAt(row, col) == Vector3<std::uint16_t>(0, 0, 0));
+				REQUIRE(matrix.getElementAt(row, col) == RGBData(0, 0, 0));
 
 		REQUIRE_THROWS_AS(matrix.getElementAt(2, 2), OutOfBoundsException);
 	}

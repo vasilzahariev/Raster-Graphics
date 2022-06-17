@@ -3,7 +3,8 @@
 #include <fstream>
 #include <algorithm>
 
-#include "Matrix.h"
+#include "../ImageData/Matrix.h"
+#include "RasterGraphicsUtility.h"
 
 template <typename T>
 class ImageUtilities {
@@ -27,7 +28,7 @@ inline void ImageUtilities<T>::readParamsToResizeMatrixFromFile(std::ifstream& f
 
 template<typename T>
 inline void ImageUtilities<T>::rotatePixels(std::string direction, Matrix<T>& pixels) {
-	std::transform(direction.begin(), direction.end(), direction.begin(), [](unsigned char c) { return std::tolower(c); });
+	RasterGraphicsUtility::toLowerString(direction);
 
 	if (direction == "left")
 		pixels.rotateLeft();

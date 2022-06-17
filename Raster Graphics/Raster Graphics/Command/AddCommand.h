@@ -4,7 +4,7 @@
 
 #include "Command.h"
 #include "../Session/Session.h"
-#include "../Image/ImageFactory.h"
+#include "../Factories/ImageFactory.h"
 #include "../Exceptions/FileException.h"
 
 class AddCommand : public Command {

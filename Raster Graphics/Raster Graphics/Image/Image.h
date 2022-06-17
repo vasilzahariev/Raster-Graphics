@@ -5,11 +5,11 @@
 #include <string_view>
 #include <vector>
 
-#include "Matrix.h"
+#include "../ImageData/Matrix.h"
 #include "../Interfaces/ICloneable.h"
 #include "../Exceptions/CommandException.h"
 #include "../Exceptions/ImageException.h"
-#include "ImageUtilities.h"
+#include "../Utilities/ImageUtilities.h"
 
 class Image : public ICloneable {
 public:

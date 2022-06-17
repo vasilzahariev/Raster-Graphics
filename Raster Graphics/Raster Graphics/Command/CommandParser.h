@@ -7,7 +7,7 @@
 #include "Command.h"
 #include "../Exceptions/CommandException.h"
 #include "../Session/SessionMaster.h"
-#include "../Command/CommandFactory.h"
+#include "../Factories/CommandFactory.h"
 
 class CommandParser {
 public:
