@@ -6,7 +6,7 @@ Command* CommandParser::parseCommandLine(std::string line, SessionMaster* sessio
 	
 	removeAdditionalSpaces(line);
 
-	std::vector<std::string_view> args;
+	std::vector<std::string> args;
 
 	extractArgsFromCommandLine(line, args);
 
@@ -43,7 +43,7 @@ void CommandParser::removeAdditionalSpaces(std::string& line) {
 	line = newLine;
 }
 
-void CommandParser::extractArgsFromCommandLine(std::string_view line, std::vector<std::string_view>& args) {
+void CommandParser::extractArgsFromCommandLine(std::string_view line, std::vector<std::string>& args) {
 	std::string arg = "";
 	bool quote = false;
 	

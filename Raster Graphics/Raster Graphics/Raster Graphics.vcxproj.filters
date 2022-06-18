@@ -45,7 +45,7 @@
     <ClCompile Include="Exceptions\Source\CommandException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Tests\CommandParserTests.cpp">
+    <ClCompile Include="Tests\CommandParserAndCommandFactoryTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Factories\Source\CommandFactory.cpp">

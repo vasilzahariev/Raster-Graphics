@@ -21,7 +21,7 @@
 
 class CommandFactory {
 public:
-	static Command* createCommand(std::vector<std::string_view> args, SessionMaster* sessionMaster);
+	static Command* createCommand(std::vector<std::string> args, SessionMaster* sessionMaster);
 
 private:
 	CommandFactory() = delete;

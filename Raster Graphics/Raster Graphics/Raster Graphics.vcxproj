@@ -170,7 +170,7 @@
     <ClCompile Include="PolymorphicVector\PolymorphicVector.cpp" />
     <ClCompile Include="Session\Source\SessionMaster.cpp" />
     <ClCompile Include="Session\Source\Session.cpp" />
-    <ClCompile Include="Tests\CommandParserTests.cpp" />
+    <ClCompile Include="Tests\CommandParserAndCommandFactoryTests.cpp" />
     <ClCompile Include="Tests\ImageFactoryTests.cpp" />
     <ClCompile Include="Tests\MatrixTests.cpp" />
     <ClCompile Include="Tests\RGBTests.cpp" />
