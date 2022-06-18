@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-#include "../PolymorphicVector/PolymorphicVector.h"
 #include "../Image/Image.h"
+#include "../ImageData/ImageVector.h"
 #include "../Command/Command.h"
 
 class Session {
@@ -36,7 +36,7 @@ public:
 
 private:
 	int nId;
-	PolymorphicVector<Image> m_images;
+	ImageVector m_images;
 	std::vector<std::string> m_unsavedChanges;
 
 	void saveImageToFile(Image* image, const std::string& fileName);

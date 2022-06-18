@@ -11,10 +11,9 @@ int Session::getId() const {
 }
 
 void Session::grayscale() {
-	// Create Iterators for the vector
-	for (size_t index = 0; index < m_images.size(); ++index)
-		if (!m_images[index]->isGrayscale() && !m_images[index]->isMonochrome())
-			m_images[index]->grayscale();
+	for (ImageVector::Iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt)
+		if (!(*imageIt)->isGrayscale() && !(*imageIt)->isMonochrome())
+			(*imageIt)->grayscale();
 
 	m_unsavedChanges.push_back("grayscale");
 }
@@ -31,28 +30,23 @@ void Session::rotate(std::string& direction) {
 }
 
 void Session::monochrome() {
-	for (size_t index = 0; index < m_images.size(); ++index) {
-		if (!m_images[index]->isMonochrome()) {
-			m_images[index]->monochrome();
-		}
-	}
+	for (ImageVector::Iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt)
+		if (!(*imageIt)->isMonochrome())
+			(*imageIt)->monochrome();
 
 	m_unsavedChanges.push_back("monochrome");
 }
 
 void Session::saveChanges() {
-	// TODO: PolymorphicIterator
-	for (size_t index = 0; index < m_images.size(); ++index) {
-		saveImageToFile(m_images[index], m_images[index]->getFileName());
-	}
+	for (ImageVector::Iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt)
+		saveImageToFile(*imageIt, (*imageIt)->getFileName());
 
 	m_unsavedChanges.clear();
 }
 
 void Session::negative() {
-	for (size_t index = 0; index < m_images.size(); ++index) {
-		m_images[index]->negative();
-	}
+	for (ImageVector::Iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt)
+		(*imageIt)->negative();
 
 	m_unsavedChanges.push_back("negative");
 }
@@ -62,16 +56,14 @@ void Session::saveAs(const std::string& fileName) {
 }
 
 void Session::close() {
-	// TODO: PolymorphicIterator
-
-	for (size_t index = 0; index < m_images.size(); ++index) {
-		m_images[index]->removeUnsavedChanges();
+	for (ImageVector::Iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt) {
+		(*imageIt)->removeUnsavedChanges();
 	}
 }
 
 void Session::undo() {
-	for (size_t index = m_images.size() - 1; index >= 0; --index)
-		m_images[index]->undo();
+	for (ImageVector::Iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt)
+		(*imageIt)->undo(); // TODO: Check what to do about the first one
 
 	m_unsavedChanges.pop_back();
 }
