@@ -37,10 +37,15 @@ void Image::readMagicNumberFromFile(std::ifstream& file) {
 }
 
 void Image::readCommentsFromFile(std::ifstream& file) {
-	std::string line = "";
+	// TODO: nz i aze veche
+	//std::string line = "";
 
-	while (file.peek() == '#')
-		readCommentLineFromFile(file, line);
+	//file.ignore();
+
+	//std::cout << file.peek() << " " << (int)'#' << std::endl;
+
+	//while (file.peek() == '#')
+	//	readCommentLineFromFile(file, line);
 }
 
 void Image::readCommentLineFromFile(std::ifstream& file, std::string& line) {

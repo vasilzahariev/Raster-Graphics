@@ -6,12 +6,11 @@
 #include <vector>
 
 #include "../ImageData/Matrix.h"
-#include "../Interfaces/ICloneable.h"
 #include "../Exceptions/CommandException.h"
 #include "../Exceptions/ImageException.h"
 #include "../Utilities/ImageUtilities.h"
 
-class Image : public ICloneable {
+class Image {
 public:
 	std::string getFileName() const;
 

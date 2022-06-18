@@ -18,6 +18,8 @@
 #include "../Command/MonochromeCommand.h"
 #include "../Command/NegativeCommand.h"
 #include "../Command/AddCommand.h"
+#include "../Command/ExitCommand.h"
+#include "../Command/SessionInfoCommand.h"
 
 class CommandFactory {
 public:

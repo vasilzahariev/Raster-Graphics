@@ -29,7 +29,7 @@ void PBMImage::writeToFile(std::ofstream& file) {
 }
 
 void PBMImage::rotate(std::string direction) {
-	m_previousVersion = clone();
+	//m_previousVersion = clone(); // TODO: Do something about the previousVersions
 
 	ImageUtilities<std::uint16_t>::rotatePixels(direction, m_pixels);
 }

@@ -18,9 +18,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PolymorphicVector\PolymorphicVector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Image\Source\Image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -28,9 +25,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Exceptions\Source\OutOfBoundsException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tests\MatrixTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Command\Source\OpenCommand.cpp">
@@ -43,9 +37,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Exceptions\Source\CommandException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tests\CommandParserAndCommandFactoryTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Factories\Source\CommandFactory.cpp">
@@ -111,26 +102,20 @@
     <ClCompile Include="Command\Source\AddCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Tests\ImageFactoryTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Utilities\Source\RasterGraphicsUtility.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ImageData\Source\RGB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Tests\RGBTests.cpp">
+    <ClCompile Include="ImageData\Source\ImageVector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Command\Source\ExitCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Interfaces\ICloneable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PolymorphicVector\PolymorphicVector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ImageData\Matrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -147,9 +132,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Exceptions\OutOfBoundsException.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tests\doctest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Exceptions\FileException.h">
@@ -231,6 +213,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ImageData\RGBData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageData\ImageVector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\ExitCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

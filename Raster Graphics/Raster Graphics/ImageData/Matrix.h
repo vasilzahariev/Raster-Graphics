@@ -101,12 +101,7 @@ inline void Matrix<T>::resize(const size_t rows, const size_t cols) {
 		blockOfMem[row] = new T[cols];
 
 		for (size_t col = 0; col < cols; ++col) {
-			if (nRows <= row || nCols <= col) {
-				blockOfMem[row][col] = 0;
-			}
-			else {
-				blockOfMem[row][col] = m_data[row][col];
-			}
+			blockOfMem[row][col] = 0;
 		}
 	}
 

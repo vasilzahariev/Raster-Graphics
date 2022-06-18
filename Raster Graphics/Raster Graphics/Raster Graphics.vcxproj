@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Command\Source\ExitCommand.cpp" />
     <ClCompile Include="Command\Source\AddCommand.cpp" />
     <ClCompile Include="Command\Source\SessionInfoCommand.cpp" />
     <ClCompile Include="Command\Source\NegativeCommand.cpp" />
@@ -161,25 +162,22 @@
     <ClCompile Include="Exceptions\Source\OutOfBoundsException.cpp" />
     <ClCompile Include="Exceptions\Source\SessionException.cpp" />
     <ClCompile Include="Factories\Source\ImageFactory.cpp" />
+    <ClCompile Include="ImageData\Source\ImageVector.cpp" />
     <ClCompile Include="ImageData\Source\RGB.cpp" />
     <ClCompile Include="Image\Source\Image.cpp" />
     <ClCompile Include="Image\Source\PBMImage.cpp" />
     <ClCompile Include="Image\Source\PGMImage.cpp" />
     <ClCompile Include="Image\Source\PPMImage.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="PolymorphicVector\PolymorphicVector.cpp" />
     <ClCompile Include="Session\Source\SessionMaster.cpp" />
     <ClCompile Include="Session\Source\Session.cpp" />
-    <ClCompile Include="Tests\CommandParserAndCommandFactoryTests.cpp" />
-    <ClCompile Include="Tests\ImageFactoryTests.cpp" />
-    <ClCompile Include="Tests\MatrixTests.cpp" />
-    <ClCompile Include="Tests\RGBTests.cpp" />
     <ClCompile Include="Utilities\Source\RasterGraphicsUtility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Command\AddCommand.h" />
     <ClInclude Include="Command\CloseCommand.h" />
     <ClInclude Include="Command\Command.h" />
+    <ClInclude Include="Command\ExitCommand.h" />
     <ClInclude Include="Factories\CommandFactory.h" />
     <ClInclude Include="Command\CommandParser.h" />
     <ClInclude Include="Command\GrayscaleCommand.h" />
@@ -199,6 +197,7 @@
     <ClInclude Include="Exceptions\NotAnException.h" />
     <ClInclude Include="Exceptions\OutOfBoundsException.h" />
     <ClInclude Include="Exceptions\SessionException.h" />
+    <ClInclude Include="ImageData\ImageVector.h" />
     <ClInclude Include="ImageData\RGBData.h" />
     <ClInclude Include="Image\Image.h" />
     <ClInclude Include="Factories\ImageFactory.h" />
@@ -207,11 +206,8 @@
     <ClInclude Include="Image\PBMImage.h" />
     <ClInclude Include="Image\PGMImage.h" />
     <ClInclude Include="Image\PPMImage.h" />
-    <ClInclude Include="Interfaces\ICloneable.h" />
-    <ClInclude Include="PolymorphicVector\PolymorphicVector.h" />
     <ClInclude Include="Session\Session.h" />
     <ClInclude Include="Session\SessionMaster.h" />
-    <ClInclude Include="Tests\doctest.h" />
     <ClInclude Include="Utilities\RasterGraphicsUtility.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

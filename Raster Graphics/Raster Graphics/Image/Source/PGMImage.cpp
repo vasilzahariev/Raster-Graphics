@@ -33,7 +33,7 @@ void PGMImage::writeToFile(std::ofstream& file) {
 }
 
 void PGMImage::rotate(std::string direction) {
-	m_previousVersion = clone();
+	//m_previousVersion = clone(); TODO: decide what to do with it
 
 	ImageUtilities<std::uint16_t>::rotatePixels(direction, m_pixels);
 }
@@ -45,7 +45,7 @@ void PGMImage::grayscale() {
 void PGMImage::monochrome() {
 	for (size_t row = 0; row < m_pixels.getRows(); ++row) {
 		for (size_t col = 0; col < m_pixels.getCols(); ++col) {
-			m_pixels.getElementAt(row, col) /= m_maxColorValue; // TODO: Check if correct
+			m_pixels.getElementAt(row, col) = m_maxColorValue * std::round((double)m_pixels.getElementAt(row, col) / m_maxColorValue); // TODO: Check if correct
 		}
 	}
 }

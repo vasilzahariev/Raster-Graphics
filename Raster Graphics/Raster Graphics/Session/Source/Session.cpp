@@ -26,7 +26,7 @@ void Session::rotate(std::string& direction) {
 	for (size_t index = 0; index < m_images.size(); ++index)
 		m_images[index]->rotate(direction);
 
-	m_unsavedChanges.push_back("rotate" + direction);
+	m_unsavedChanges.push_back("rotate " + direction);
 }
 
 void Session::monochrome() {

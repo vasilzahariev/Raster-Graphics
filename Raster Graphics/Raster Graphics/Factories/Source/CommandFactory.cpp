@@ -43,6 +43,14 @@ Command* CommandFactory::createCommand(std::vector<std::string> args, SessionMas
         return new UndoCommand(sessionMaster->getActiveSession());
     else if (commandType == "help")
         return new HelpCommand();
+    else if (commandType == "session") {
+        if (args.size() == 1)
+            throw CommandException("Invalid number of arguments");
+
+        return new SessionInfoCommand(sessionMaster->getActiveSession());
+    }
+    else if (commandType == "exit")
+        return new ExitCommand();
 
     throw CommandException("Invalid command");
 }

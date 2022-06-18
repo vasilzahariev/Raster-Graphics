@@ -21,7 +21,7 @@ inline void ImageUtilities<T>::readParamsToResizeMatrixFromFile(std::ifstream& f
 	size_t rows;
 	size_t cols;
 
-	file >> rows >> cols;
+	file >> cols >> rows;
 
 	pixels.resize(rows, cols);
 }
@@ -40,5 +40,5 @@ inline void ImageUtilities<T>::rotatePixels(std::string direction, Matrix<T>& pi
 
 template<typename T>
 inline void ImageUtilities<T>::writePixelsRowsAndColsToFile(std::ofstream& file, const Matrix<T>& pixels) {
-	file << pixels.getRows() << ' ' << pixels.getCols() << '\n';
+	file << pixels.getCols() << ' ' << pixels.getRows() << '\n';
 }

@@ -9,19 +9,25 @@ Engine& Engine::getInstance() {
 	return engine;
 }
 
-void Engine::run() {
+void Engine::run(std::istream& in, std::ostream& out) {
 	std::string line;
-
-	// TODO: Catch Errors or maybe don't and just get the message of the errors? sounds better?
+	Command* cmd = nullptr;
 	
 	do {
-		std::cout << '>';
-		std::getline(std::cin, line);
-		Command* cmd = CommandParser::parseCommandLine(line, &m_sessionMaster); // TODO: Catch incomming exception if the command is invalid
+		if (&in == &std::cin) out << '>';
 
-		if (cmd == nullptr)
-			throw CommandException("Invalid input arguments");
-		
-		std::cout << cmd->execute() << std::endl;
-	} while (true);
+		std::getline(in, line);
+
+		try {
+			cmd = CommandParser::parseCommandLine(line, &m_sessionMaster);
+
+			if (cmd == nullptr)
+				throw CommandException("Invalid input arguments");
+
+			out << cmd->execute() << std::endl;
+		}
+		catch (CommandException err) {
+			out << err.what() << std::endl;
+		}
+	} while (dynamic_cast<ExitCommand*>(cmd) == nullptr);
 }

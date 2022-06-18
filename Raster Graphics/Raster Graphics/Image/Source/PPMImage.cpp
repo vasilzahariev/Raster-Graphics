@@ -33,7 +33,7 @@ void PPMImage::writeToFile(std::ofstream& file) {
 }
 
 void PPMImage::rotate(std::string direction) {
-	m_previousVersion = clone();
+	//m_previousVersion = clone();
 
 	ImageUtilities<RGBData>::rotatePixels(direction, m_pixels);
 }

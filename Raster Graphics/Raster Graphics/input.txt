@@ -1,0 +1,3 @@
+help
+open
+exit

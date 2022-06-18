@@ -31,9 +31,11 @@ void RGBData::transformToGrayscale() {
 }
 
 void RGBData::normalizeByValue(const std::uint16_t value) {
-	red = std::round((double)red / value);
-	green = std::round((double)green / value);
-	blue = std::round((double)blue / value);
+	std::uint16_t BWVal = std::round((double)(red + green + blue) / (3 * value));
+
+	red = value * BWVal;
+	green = value * BWVal;
+	blue = value * BWVal;
 }
 
 void RGBData::transformToNegative(const std::uint16_t value) {

@@ -10,7 +10,7 @@ std::string RotateCommand::execute() {
 	try {
 		m_session->rotate(m_direction);
 
-		output = "SaveAs was successful";
+		output = "Rotate was successful";
 	}
 	catch (std::exception err) {
 		output = err.what();

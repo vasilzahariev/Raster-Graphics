@@ -10,7 +10,7 @@ class Engine {
 public:
 	static Engine& getInstance();
 
-	void run();
+	void run(std::istream& in = std::cin, std::ostream& out = std::cout);
 
 private:
 	Engine();
