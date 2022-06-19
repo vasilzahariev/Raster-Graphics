@@ -10,6 +10,9 @@ Command* CommandParser::parseCommandLine(std::string line, SessionMaster* sessio
 
 	extractArgsFromCommandLine(line, args);
 
+	if (args.size() == 0)
+		throw CommandException("Invalid type of command");
+
 	return CommandFactory::createCommand(args, sessionMaster);
 }
 

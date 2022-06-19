@@ -1,5 +1,5 @@
 #include "../ExitCommand.h"
 
-std::string ExitCommand::execute() {
+std::string ExitCommand::executor() {
     return "Goodbye";
 }

@@ -7,7 +7,8 @@ class SaveAsCommand : public Command {
 public:
 	SaveAsCommand(Session* const session, std::string_view fileName);
 
-	std::string execute() override;
+protected:
+	std::string executor() override;
 
 private:
 	Session* const m_session;

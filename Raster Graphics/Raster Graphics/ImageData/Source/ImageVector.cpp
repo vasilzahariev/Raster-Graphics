@@ -1,57 +1,5 @@
 #include "../ImageVector.h"
 
-ImageVectorIterator::ImageVectorIterator(PointerType ptr)
-	: m_ptr(ptr) {
-}
-
-ImageVectorIterator& ImageVectorIterator::operator++() {
-	m_ptr++;
-
-	return *this;
-}
-
-ImageVectorIterator ImageVectorIterator::operator++(int) {
-	ImageVectorIterator iterator = *this;
-
-	++(*this);
-
-	return iterator;
-}
-
-ImageVectorIterator& ImageVectorIterator::operator--() {
-	m_ptr--;
-
-	return *this;
-}
-
-ImageVectorIterator ImageVectorIterator::operator--(int) {
-	ImageVectorIterator iterator = *this;
-
-	--(*this);
-
-	return iterator;
-}
-
-ImageVectorIterator::ReferenceType ImageVectorIterator::operator[](const int index) {
-	return *(m_ptr + index);
-}
-
-ImageVectorIterator::PointerType ImageVectorIterator::operator->() {
-	return m_ptr;
-}
-
-ImageVectorIterator::ReferenceType ImageVectorIterator::operator*() {
-	return *m_ptr;
-}
-
-bool ImageVectorIterator::operator==(const ImageVectorIterator& other) {
-	return m_ptr == other.m_ptr;
-}
-
-bool ImageVectorIterator::operator!=(const ImageVectorIterator& other) {
-	return !(*this == other);
-}
-
 ImageVector::ImageVector()
 	: m_data(nullptr), nSize(0), nCapacity(0) {
 	allocData(2);
@@ -92,12 +40,20 @@ const Image* ImageVector::operator[](const int index) const {
 	return getElementAtIndex(index);
 }
 
-ImageVector::Iterator ImageVector::begin() {
-	return Iterator(m_data);
+ImageVector::iterator ImageVector::begin() {
+	return iterator(m_data);
 }
 
-ImageVector::Iterator ImageVector::end() {
-	return Iterator(m_data + nSize);
+ImageVector::iterator ImageVector::end() {
+	return iterator(m_data + nSize);
+}
+
+ImageVector::const_iterator ImageVector::begin() const {
+	return const_iterator((const Image**) m_data);
+}
+
+ImageVector::const_iterator ImageVector::end() const {
+	return const_iterator((const Image**) (m_data + nSize));
 }
 
 ImageVector& ImageVector::operator=(const ImageVector& other) {

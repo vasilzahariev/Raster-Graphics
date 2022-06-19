@@ -1,41 +1,13 @@
 #pragma once
 
 #include "../Image/Image.h"
-
-class ImageVectorIterator {
-public:
-	using ValueType = Image*;
-	using PointerType = ValueType*;
-	using ReferenceType = ValueType&;
-
-public:
-	ImageVectorIterator(PointerType ptr);
-
-	ImageVectorIterator& operator++();
-
-	ImageVectorIterator operator++(int);
-
-	ImageVectorIterator& operator--();
-
-	ImageVectorIterator operator--(int);
-
-	ReferenceType operator[](const int index);
-
-	PointerType operator->();
-
-	ReferenceType operator*();
-
-	bool operator==(const ImageVectorIterator& other);
-
-	bool operator!=(const ImageVectorIterator& other);
-
-private:
-	PointerType m_ptr;
-};
+#include "./ImageVectorIterators/ImageVectorIterator.h"
+#include "./ImageVectorIterators/ImageVectorConstIterator.h"
 
 class ImageVector {
 public:
-	using Iterator = ImageVectorIterator;
+	using iterator = ImageVectorIterator;
+	using const_iterator = ImageVectorConstIterator;
 
 public:
 	ImageVector();
@@ -50,8 +22,11 @@ public:
 	Image* operator[](const int index);
 	const Image* operator[](const int index) const;
 
-	Iterator begin();
-	Iterator end();
+	iterator begin();
+	iterator end();
+
+	const_iterator begin() const;
+	const_iterator end() const;
 
 	ImageVector& operator=(const ImageVector& other);
 

@@ -11,7 +11,7 @@ int Session::getId() const {
 }
 
 void Session::grayscale() {
-	for (ImageVector::Iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt)
+	for (ImageVector::iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt)
 		if (!(*imageIt)->isGrayscale() && !(*imageIt)->isMonochrome())
 			(*imageIt)->grayscale();
 
@@ -30,7 +30,7 @@ void Session::rotate(std::string& direction) {
 }
 
 void Session::monochrome() {
-	for (ImageVector::Iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt)
+	for (ImageVector::iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt)
 		if (!(*imageIt)->isMonochrome())
 			(*imageIt)->monochrome();
 
@@ -38,14 +38,14 @@ void Session::monochrome() {
 }
 
 void Session::saveChanges() {
-	for (ImageVector::Iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt)
+	for (ImageVector::iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt)
 		saveImageToFile(*imageIt, (*imageIt)->getFileName());
 
 	m_unsavedChanges.clear();
 }
 
 void Session::negative() {
-	for (ImageVector::Iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt)
+	for (ImageVector::iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt)
 		(*imageIt)->negative();
 
 	m_unsavedChanges.push_back("negative");
@@ -56,13 +56,13 @@ void Session::saveAs(const std::string& fileName) {
 }
 
 void Session::close() {
-	for (ImageVector::Iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt) {
+	for (ImageVector::iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt) {
 		(*imageIt)->removeUnsavedChanges();
 	}
 }
 
 void Session::undo() {
-	for (ImageVector::Iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt)
+	for (ImageVector::iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt)
 		(*imageIt)->undo(); // TODO: Check what to do about the first one
 
 	m_unsavedChanges.pop_back();
@@ -90,4 +90,12 @@ std::string Session::info(std::ostream& out) const {
 	infoStr += '\n';
 
 	return infoStr;
+}
+
+bool Session::containsFile(std::string_view fileLocation) const {
+	for (ImageVector::const_iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt)
+		if ((*imageIt)->getFileName() == fileLocation)
+			return true;
+
+	return false;
 }

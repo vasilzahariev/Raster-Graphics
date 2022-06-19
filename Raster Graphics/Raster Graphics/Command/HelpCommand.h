@@ -4,6 +4,6 @@
 #include "Command.h"
 
 class HelpCommand : public Command {
-public:
-	std::string execute() override;
+protected:
+	std::string executor() override;
 };

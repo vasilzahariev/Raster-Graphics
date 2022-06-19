@@ -1,20 +1,11 @@
 #include "../CloseCommand.h"
 
-CloseCommand::CloseCommand(Session* const session)
-	: m_session(session) {
+CloseCommand::CloseCommand(SessionMaster* const sessionMaster)
+	: m_sessionMaster(sessionMaster) {
 }
 
-std::string CloseCommand::execute() {
-	std::string output = "";
+std::string CloseCommand::executor() {
+	m_sessionMaster->closeActiveSession();
 
-	try {
-		m_session->close();
-
-		output = "Close was successful";
-	}
-	catch (std::exception err) {
-		output = err.what();
-	}
-
-	return output;
+	return "Close was successful";
 }

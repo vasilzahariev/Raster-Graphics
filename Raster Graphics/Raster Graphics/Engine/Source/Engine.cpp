@@ -29,5 +29,24 @@ void Engine::run(std::istream& in, std::ostream& out) {
 		catch (CommandException err) {
 			out << err.what() << std::endl;
 		}
+		catch (FileException err) {
+			out << err.what() << std::endl;
+		}
+		catch (ImageException err) {
+			out << err.what() << std::endl;
+		}
+		catch (NotAnException err) { // TODO: Add an easter egg =)
+			out << err.what() << std::endl;
+		}
+		catch (OutOfBoundsException err) {
+			out << err.what() << std::endl;
+		}
+		catch (SessionException err) {
+			out << err.what() << std::endl;
+		}
+		catch (std::exception err) {
+			out << err.what() << std::endl;
+		}
+
 	} while (dynamic_cast<ExitCommand*>(cmd) == nullptr);
 }

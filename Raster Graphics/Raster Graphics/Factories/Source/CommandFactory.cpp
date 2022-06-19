@@ -38,7 +38,7 @@ Command* CommandFactory::createCommand(std::vector<std::string> args, SessionMas
         return new SaveAsCommand(sessionMaster->getActiveSession(), args[1]);
     }
     else if (commandType == "close")
-        return new CloseCommand(sessionMaster->getActiveSession());
+        return new CloseCommand(sessionMaster);
     else if (commandType == "undo")
         return new UndoCommand(sessionMaster->getActiveSession());
     else if (commandType == "help")
@@ -46,8 +46,21 @@ Command* CommandFactory::createCommand(std::vector<std::string> args, SessionMas
     else if (commandType == "session") {
         if (args.size() == 1)
             throw CommandException("Invalid number of arguments");
+        else if (args[1] != "info")
+            throw CommandException("Invalid command");
 
         return new SessionInfoCommand(sessionMaster->getActiveSession());
+    }
+    else if (commandType == "switch") {
+        if (args.size() == 1)
+            throw CommandException("Invalid number of arguments");
+
+        try {
+            return new SwitchCommand(sessionMaster, std::stoi(args[1]));
+        }
+        catch (std::invalid_argument err) {
+            throw CommandException("Invalid argument: <session> should be an INTEGER");
+        }
     }
     else if (commandType == "exit")
         return new ExitCommand();

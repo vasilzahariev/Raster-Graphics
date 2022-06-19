@@ -15,7 +15,13 @@ public:
 
 	void addSession(const Session& session);
 
+	void closeActiveSession();
+
+	bool checkIfFileAlreadyExists(std::string_view fileLocation) const;
+
 private:
 	Session* m_activeSession;
 	std::vector<Session> m_sessions;
+
+	size_t getSessionIndex(const Session* const session) const;
 };

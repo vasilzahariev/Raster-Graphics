@@ -32,6 +32,8 @@ public:
 
 	std::string info(std::ostream& out = std::cout) const;
 
+	bool containsFile(std::string_view fileLocation) const;
+
 	// TODO: Method that cheks if there are unsaved changes
 
 private:

@@ -20,6 +20,7 @@
 #include "../Command/AddCommand.h"
 #include "../Command/ExitCommand.h"
 #include "../Command/SessionInfoCommand.h"
+#include "../Command/SwitchCommand.h"
 
 class CommandFactory {
 public:

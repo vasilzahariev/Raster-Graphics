@@ -3,6 +3,6 @@
 #include "Command.h"
 
 class ExitCommand : public Command {
-public:
-	std::string execute();
+protected:
+	std::string executor() override;
 };

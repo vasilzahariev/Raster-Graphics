@@ -1,16 +1,16 @@
 #pragma once
 
 #include "Command.h"
-#include "../Session/Session.h"
 #include "../Session/SessionMaster.h"
 
-class CloseCommand : public Command {
+class SwitchCommand : public Command {
 public:
-	CloseCommand(SessionMaster* const sessionMaster);
+	SwitchCommand(SessionMaster* const sessionMaster, const int id);
 
 protected:
 	std::string executor() override;
 
 private:
 	SessionMaster* const m_sessionMaster;
+	int m_id;
 };

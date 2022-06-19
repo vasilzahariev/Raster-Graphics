@@ -7,7 +7,8 @@ class GrayscaleCommand : public Command {
 public:
 	GrayscaleCommand(Session* const session);
 
-	std::string execute() override;
+protected:
+	std::string executor() override;
 
 private:
 	Session* const m_session;

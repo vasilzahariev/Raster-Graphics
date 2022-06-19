@@ -1,6 +1,6 @@
 #include "../HelpCommand.h"
 
-std::string HelpCommand::execute() {
+std::string HelpCommand::executor() {
 	std::string output = "";
 
 	output += "The following commands are supported:\n";

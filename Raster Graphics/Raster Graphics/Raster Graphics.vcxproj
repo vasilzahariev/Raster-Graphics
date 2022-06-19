@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Command\Source\Command.cpp" />
     <ClCompile Include="Command\Source\ExitCommand.cpp" />
     <ClCompile Include="Command\Source\AddCommand.cpp" />
     <ClCompile Include="Command\Source\SessionInfoCommand.cpp" />
@@ -149,6 +150,7 @@
     <ClCompile Include="Command\Source\SaveAsCommand.cpp" />
     <ClCompile Include="Command\Source\SaveCommand.cpp" />
     <ClCompile Include="Command\Source\RotateCommand.cpp" />
+    <ClCompile Include="Command\Source\SwitchCommand.cpp" />
     <ClCompile Include="Factories\Source\CommandFactory.cpp" />
     <ClCompile Include="Command\Source\HelpCommand.cpp" />
     <ClCompile Include="Command\Source\CommandParser.cpp" />
@@ -162,6 +164,8 @@
     <ClCompile Include="Exceptions\Source\OutOfBoundsException.cpp" />
     <ClCompile Include="Exceptions\Source\SessionException.cpp" />
     <ClCompile Include="Factories\Source\ImageFactory.cpp" />
+    <ClCompile Include="ImageData\ImageVectorIterators\Source\ImageVectorConstIterator.cpp" />
+    <ClCompile Include="ImageData\ImageVectorIterators\Source\ImageVectorIterator.cpp" />
     <ClCompile Include="ImageData\Source\ImageVector.cpp" />
     <ClCompile Include="ImageData\Source\RGB.cpp" />
     <ClCompile Include="Image\Source\Image.cpp" />
@@ -178,6 +182,7 @@
     <ClInclude Include="Command\CloseCommand.h" />
     <ClInclude Include="Command\Command.h" />
     <ClInclude Include="Command\ExitCommand.h" />
+    <ClInclude Include="Command\SwitchCommand.h" />
     <ClInclude Include="Factories\CommandFactory.h" />
     <ClInclude Include="Command\CommandParser.h" />
     <ClInclude Include="Command\GrayscaleCommand.h" />
@@ -198,6 +203,8 @@
     <ClInclude Include="Exceptions\OutOfBoundsException.h" />
     <ClInclude Include="Exceptions\SessionException.h" />
     <ClInclude Include="ImageData\ImageVector.h" />
+    <ClInclude Include="ImageData\ImageVectorIterators\ImageVectorConstIterator.h" />
+    <ClInclude Include="ImageData\ImageVectorIterators\ImageVectorIterator.h" />
     <ClInclude Include="ImageData\RGBData.h" />
     <ClInclude Include="Image\Image.h" />
     <ClInclude Include="Factories\ImageFactory.h" />

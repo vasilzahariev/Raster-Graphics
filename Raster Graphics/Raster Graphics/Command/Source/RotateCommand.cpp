@@ -4,17 +4,8 @@ RotateCommand::RotateCommand(Session* const sessionMaster, std::string_view dire
 	: m_session(sessionMaster), m_direction(direction) {
 }
 
-std::string RotateCommand::execute() {
-	std::string output = "";
+std::string RotateCommand::executor() {
+	m_session->rotate(m_direction);
 
-	try {
-		m_session->rotate(m_direction);
-
-		output = "Rotate was successful";
-	}
-	catch (std::exception err) {
-		output = err.what();
-	}
-
-	return output;
+	return "Rotate was successful";
 }
