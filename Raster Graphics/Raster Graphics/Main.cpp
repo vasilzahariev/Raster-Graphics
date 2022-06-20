@@ -1,5 +1,3 @@
-#include <fstream>
-
 #include "Engine/Engine.h"
 
 int main() {
