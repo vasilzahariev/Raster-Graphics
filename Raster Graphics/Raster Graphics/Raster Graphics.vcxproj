@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Command\Source\CollageCommand.cpp" />
     <ClCompile Include="Command\Source\Command.cpp" />
     <ClCompile Include="Command\Source\ExitCommand.cpp" />
     <ClCompile Include="Command\Source\AddCommand.cpp" />
@@ -180,6 +181,7 @@
   <ItemGroup>
     <ClInclude Include="Command\AddCommand.h" />
     <ClInclude Include="Command\CloseCommand.h" />
+    <ClInclude Include="Command\CollageCommand.h" />
     <ClInclude Include="Command\Command.h" />
     <ClInclude Include="Command\ExitCommand.h" />
     <ClInclude Include="Command\SwitchCommand.h" />

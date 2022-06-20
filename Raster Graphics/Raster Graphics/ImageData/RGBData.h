@@ -26,6 +26,8 @@ public:
 	void setRGB(const std::uint16_t val);
 	void setRGB(const std::uint16_t R, const std::uint16_t G, const std::uint16_t B);
 
+	RGBData operator*(const std::uint16_t val);
+
 	friend RGBData& operator-(const std::uint16_t val, RGBData& rgb);
 	friend std::istream& operator>>(std::istream& in, RGBData& RGBData);
 	friend std::ostream& operator<<(std::ostream& out, const RGBData& RGBData);

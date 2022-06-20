@@ -21,6 +21,9 @@ public:
 	void monochrome() override;
 	void negative() override;
 
+	void setPixels(const Matrix<std::uint16_t>& matrix);
+	Matrix<std::uint16_t> getPixels() const;
+
 private:
 	static const std::uint16_t MAX_COLOR_VALUE = 1;
 

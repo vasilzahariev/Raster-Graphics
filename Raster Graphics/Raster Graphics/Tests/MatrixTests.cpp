@@ -165,6 +165,94 @@ TEST_CASE("Basic Matrix") {
 		REQUIRE_EQ(matrix.getElementAt(1, 0), 3);
 		REQUIRE_EQ(matrix.getElementAt(1, 2), 1);
 	}
+
+	SUBCASE("Should combine two matrixes horizontally") {
+		BasicMatrix matrix(3, 3);
+		BasicMatrix matrix2(2, 2);
+
+		unsigned counter = 0;
+
+		/*
+		* M1:
+		* 1 2 3
+		* 4 5 6
+		* 7 8 9
+		* 
+		* M2:
+		* 2 4
+		* 8 10
+		*/
+
+		for (size_t row = 0; row < matrix.getRows(); ++row) {
+			for (size_t col = 0; col < matrix.getCols(); ++col) {
+				matrix.getElementAt(row, col) = ++counter;
+				if (row < 2 && col < 2)
+					matrix2.getElementAt(row, col) = counter * 2;
+			}
+		}
+
+		BasicMatrix out;
+
+		out.combineHorizontally(matrix, matrix2);
+
+		/*
+		* out:
+		* 1 2 3 2 4
+		* 4 5 6 8 10
+		* 7 8 9 0 0
+		*/
+
+		REQUIRE_EQ(out.getRows(), 5);
+		REQUIRE_EQ(out.getCols(), 3);
+		REQUIRE_EQ(out.getElementAt(0, 0), 1);
+		REQUIRE_EQ(out.getElementAt(4, 1), 10);
+		REQUIRE_EQ(out.getElementAt(4, 2), 0);
+	}
+
+	SUBCASE("Should combine two matrixes vertically") {
+		BasicMatrix matrix(3, 3);
+		BasicMatrix matrix2(2, 2);
+
+		unsigned counter = 0;
+
+		/*
+		* M1:
+		* 1 2 3
+		* 4 5 6
+		* 7 8 9
+		*
+		* M2:
+		* 2 4
+		* 8 10
+		*/
+
+		for (size_t row = 0; row < matrix.getRows(); ++row) {
+			for (size_t col = 0; col < matrix.getCols(); ++col) {
+				matrix.getElementAt(row, col) = ++counter;
+				if (row < 2 && col < 2)
+					matrix2.getElementAt(row, col) = counter * 2;
+			}
+		}
+
+		BasicMatrix out;
+
+		out.combineVertically(matrix, matrix2);
+
+		/*
+		* out:
+		* 1 2 3 2 4
+		* 4 5 6 8 10
+		* 7 8 9 0 0
+		*/
+
+		REQUIRE_EQ(out.getRows(), 3);
+		REQUIRE_EQ(out.getCols(), 5);
+		REQUIRE_EQ(out.getElementAt(0, 0), 1);
+		REQUIRE_EQ(out.getElementAt(1, 4), 10);
+		REQUIRE_EQ(out.getElementAt(2, 2), 9);
+		REQUIRE_EQ(out.getElementAt(2, 3), 0);
+		REQUIRE_EQ(out.getElementAt(2, 4), 0);
+	}
 }
 
 TEST_CASE("Vector Matrix") {

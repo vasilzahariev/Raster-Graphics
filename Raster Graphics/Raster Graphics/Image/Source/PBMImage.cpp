@@ -27,7 +27,7 @@ void PBMImage::writeToFile(std::ofstream& file) {
 }
 
 void PBMImage::rotate(std::string direction) {
-	//m_previousVersion = clone(); // TODO: Do something about the previousVersions
+	m_previousVersion = clone();
 
 	ImageUtilities<std::uint16_t>::rotatePixels(direction, m_pixels);
 }
@@ -41,7 +41,17 @@ void PBMImage::monochrome() {
 }
 
 void PBMImage::negative() {
+	m_previousVersion = clone();
+
 	ImageUtilities<std::uint16_t>::negativeTransformation(m_pixels, m_maxColorValue);
+}
+
+void PBMImage::setPixels(const Matrix<std::uint16_t>& matrix) {
+	m_pixels = matrix;
+}
+
+Matrix<std::uint16_t> PBMImage::getPixels() const {
+	return m_pixels;
 }
 
 void PBMImage::readRowsAndColsFromFileAndResizePixels(std::ifstream& file) {

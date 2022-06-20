@@ -32,7 +32,11 @@ public:
 
 	void removeUnsavedChanges();
 
-	static Image* collage(Image* image1, Image* image2, std::string direction, std::string outImageLocation);
+	void setMagicNumber(const std::uint16_t magicNumber);
+	std::uint16_t getMagicNumber() const;
+
+	void setMaxColorValue(const std::uint16_t maxColorValue);
+	std::uint16_t getMaxColorValue() const;
 
 protected:
 	Image(std::string_view fileName, const bool grayscale = false, const bool monochrome = false, const std::uint16_t maxColorValue = 0);

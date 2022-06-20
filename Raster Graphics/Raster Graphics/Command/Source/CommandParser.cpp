@@ -19,8 +19,11 @@ void CommandParser::checkIfLineIsEmpty(std::string& line) {
 void CommandParser::checkIfNumberOfQuotesIsCorrect(std::string::const_iterator symbol, const std::string::const_iterator end, bool status) {
 	if (symbol == end && !status)
 		throw CommandException("The Number of quotes is incorrect");
-	else if (symbol != end)
+	else if (symbol != end) {
+		status = (*symbol == '\"' ? !status : status);
+
 		checkIfNumberOfQuotesIsCorrect(++symbol, end, status);
+	}
 }
 
 void CommandParser::removeAdditionalSpaces(std::string::iterator symbol, std::string& line, bool status) {
@@ -56,7 +59,12 @@ void CommandParser::extractArgsFromCommandLine(const std::string& line, std::vec
 
 void CommandParser::extractArgFromLine(const std::string& line, std::vector<std::string>& args, size_t& start, const size_t index) {
 	std::string arg = line.substr(start, index - start + (index == line.size() - 1 ? 1 : 0));
-	std::replace_if(arg.begin(), arg.end(), [](char c) { return c == '\"'; }, '\0');
+	
+	if (arg[0] == '"' && arg[arg.size() - 1] == '"') {
+		arg.erase(arg.begin());
+		arg.erase(arg.end() - 1);
+	}
+
 	args.push_back(arg);
 
 	start = index + 1;

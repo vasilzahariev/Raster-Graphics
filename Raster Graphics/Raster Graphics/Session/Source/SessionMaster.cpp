@@ -52,6 +52,8 @@ bool SessionMaster::checkIfFileAlreadyExists(std::string_view fileLocation) cons
 }
 
 bool SessionMaster::areThereUnsavedChanges() const {
+	if (m_activeSession == nullptr) return false;
+
 	return m_activeSession->areThereUnsavedChanges();
 }
 

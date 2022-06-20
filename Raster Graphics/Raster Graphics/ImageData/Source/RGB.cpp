@@ -50,6 +50,10 @@ void RGBData::setRGB(const std::uint16_t R, const std::uint16_t G, const std::ui
 	blue = B;
 }
 
+RGBData RGBData::operator*(const std::uint16_t val) {
+	return RGBData(red * val, green * val, blue * val);
+}
+
 RGBData& operator-(const std::uint16_t val, RGBData& rgb) {
 	rgb.setRGB(val - rgb.red, val - rgb.green, val - rgb.blue);
 

@@ -19,6 +19,9 @@ public:
 	void monochrome() override;
 	void negative() override;
 
+	void setPixels(const Matrix<RGBData>& matrix);
+	Matrix<RGBData> getPixels() const;
+
 private:
 	Matrix<RGBData> m_pixels;
 

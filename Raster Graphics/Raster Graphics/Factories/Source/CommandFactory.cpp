@@ -74,6 +74,11 @@ Command* CommandFactory::createCommand(std::vector<std::string> args, SessionMas
 
 		return new SwitchCommand(sessionMaster, std::stoi(args[1]));
 	}
+	else if (commandType == "collage") {
+		argsValidator(args, CollageCommand::getNumberOfArgs() + 1);
+
+		return new CollageCommand(sessionMaster->getActiveSession(), args);
+	}
 	else if (commandType == "exit") {
 		argsValidator(args, ExitCommand::getNumberOfArgs() + 1);
 

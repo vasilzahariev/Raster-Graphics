@@ -20,6 +20,9 @@ public:
 	void monochrome() override;
 	void negative() override;
 
+	void setPixels(const Matrix<std::uint16_t>& matrix);
+	Matrix<std::uint16_t> getPixels() const;
+
 private:
 	Matrix<std::uint16_t> m_pixels;
 

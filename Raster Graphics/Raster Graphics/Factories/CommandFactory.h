@@ -21,6 +21,7 @@
 #include "../Command/ExitCommand.h"
 #include "../Command/SessionInfoCommand.h"
 #include "../Command/SwitchCommand.h"
+#include "../Command/CollageCommand.h"
 
 class CommandFactory {
 public:

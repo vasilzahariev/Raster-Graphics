@@ -18,15 +18,15 @@ std::string OpenCommand::execute() {
 	if (!file.is_open())
 		throw FileException("File \"" + m_fileLocation + "\" didn't open correctly");
 
-	m_sessionMaster->addSession(Session());
-
 	Image* image = ImageFactory::createImage(m_fileLocation);
 
 	if (image == nullptr)
 		throw ImageException("Image creation failed");
 
+
 	image->readFromFile(file);
 
+	m_sessionMaster->addSession(Session());
 	m_sessionMaster->getActiveSession()->addImage(image);
 
 	file.close();

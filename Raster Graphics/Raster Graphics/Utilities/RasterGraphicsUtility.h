@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include "../Image/Image.h"
 
 class RasterGraphicsUtility {
 public:

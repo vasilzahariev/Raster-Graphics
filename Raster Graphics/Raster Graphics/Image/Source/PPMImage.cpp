@@ -31,25 +31,39 @@ void PPMImage::writeToFile(std::ofstream& file) {
 }
 
 void PPMImage::rotate(std::string direction) {
-	//m_previousVersion = clone();
+	m_previousVersion = clone();
 
 	ImageUtilities<RGBData>::rotatePixels(direction, m_pixels);
 }
 
 void PPMImage::grayscale() {
+	m_previousVersion = clone();
+
 	for (size_t row = 0; row < m_pixels.getRows(); ++row)
 		for (size_t col = 0; col < m_pixels.getCols(); ++col)
 			m_pixels.getElementAt(row, col).transformToGrayscale();
 }
 
 void PPMImage::monochrome() {
+	m_previousVersion = clone();
+
 	for (size_t row = 0; row < m_pixels.getRows(); ++row)
 		for (size_t col = 0; col < m_pixels.getCols(); ++col)
 			m_pixels.getElementAt(row, col).normalizeByValue(m_maxColorValue);
 }
 
 void PPMImage::negative() {
+	m_previousVersion = clone();
+
 	ImageUtilities<RGBData>::negativeTransformation(m_pixels, m_maxColorValue);
+}
+
+void PPMImage::setPixels(const Matrix<RGBData>& matrix) {
+	m_pixels = matrix;
+}
+
+Matrix<RGBData> PPMImage::getPixels() const {
+	return m_pixels;
 }
 
 void PPMImage::readRowsAndColsFromFileAndResizePixels(std::ifstream& file) {

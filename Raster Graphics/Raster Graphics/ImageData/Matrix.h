@@ -26,6 +26,9 @@ public:
 	void rotateRight();
 	void rotateLeft();
 
+	static Matrix<T> combineHorizontally(const Matrix<T>& matrix1, const Matrix<T>& matrix2, const std::uint16_t maxValues[3]);
+	static Matrix<T> combineVertically(const Matrix<T>& matrix1, const Matrix<T>& matrix2, const std::uint16_t maxValues[3]);
+
 	T& getElementAt(const size_t row, const size_t col);
 	const T& getElementAt(const size_t row, const size_t col) const;
 
@@ -57,7 +60,8 @@ inline Matrix<T>::Matrix(const size_t rows, const size_t cols)
 }
 
 template<typename T>
-inline Matrix<T>::Matrix(const Matrix<T>& other) {
+inline Matrix<T>::Matrix(const Matrix<T>& other)
+	: m_data(nullptr), nRows(0), nCols(0) {
 	copy(other);
 }
 
@@ -113,6 +117,57 @@ inline void Matrix<T>::rotateLeft() {
 }
 
 template<typename T>
+inline Matrix<T> Matrix<T>::combineVertically(const Matrix<T>& matrix1, const Matrix<T>& matrix2, const std::uint16_t maxValues[3]) {
+	const size_t rows = matrix1.getRows() + matrix2.getRows();
+	const size_t cols = std::max(matrix1.getCols(), matrix2.getCols());
+
+	Matrix<T> out(rows, cols);
+
+	for (size_t row = 0; row < rows; ++row) {
+		const Matrix<T>& source = (row < matrix1.getRows() ? matrix1 : matrix2);
+		const size_t rowIndex = row < matrix1.getRows() ? row : row - matrix1.getRows();
+
+		for (size_t col = 0; col < cols; ++col) {
+			if (col < source.getCols()) {
+				if (&source == &matrix1 && maxValues[0] == maxValues[2] || &source == &matrix2 && maxValues[1] == maxValues[2])
+					out.getElementAt(row, col) = source.m_data[rowIndex][col];
+				else
+					out.getElementAt(row, col) = source.m_data[rowIndex][col] * (maxValues[2] / (&source == &matrix1 ? maxValues[0] : maxValues[1]));
+			}
+			else
+				out.getElementAt(row, col) = 0;
+		}
+	}
+
+	return out;
+}
+
+template<typename T>
+inline Matrix<T> Matrix<T>::combineHorizontally(const Matrix<T>& matrix1, const Matrix<T>& matrix2, const std::uint16_t maxValues[3]) {
+	const size_t rows = std::max(matrix1.getRows(), matrix2.getRows());
+	const size_t cols = matrix1.getCols() + matrix2.getCols();
+
+	Matrix<T> out(rows, cols);
+
+	for (size_t row = 0; row < rows; ++row) {
+		for (size_t col = 0; col < cols; ++col) {
+			const Matrix<T>& source = (col < matrix1.getCols() ? matrix1 : matrix2);
+			const size_t colIndex = col < matrix1.getCols() ? col : col - matrix1.getCols();
+
+			if (row < source.getRows())
+				if (&source == &matrix1 && maxValues[0] == maxValues[2] || &source == &matrix2 && maxValues[1] == maxValues[2])
+					out.getElementAt(row, col) = source.m_data[row][colIndex];
+				else
+					out.getElementAt(row, col) = source.m_data[row][colIndex] * (maxValues[2] / (&source == &matrix1 ? maxValues[0] : maxValues[1]));
+			else
+				out.getElementAt(row, col) = 0;
+		}
+	}
+
+	return out;
+}
+
+template<typename T>
 inline T& Matrix<T>::getElementAt(const size_t row, const size_t col) {
 	return getElement(row, col);
 }
@@ -131,6 +186,9 @@ inline Matrix<T>& Matrix<T>::operator=(const Matrix<T>& other) {
 
 template<typename T>
 inline void Matrix<T>::deleteData() {
+	if (m_data == nullptr)
+		return;
+
 	for (size_t row = 0; row < nRows; ++row) {
 		delete[] m_data[row];
 		m_data[row] = nullptr;

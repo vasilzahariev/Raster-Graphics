@@ -126,6 +126,9 @@
     <ClCompile Include="Command\Source\Command.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Command\Source\CollageCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageData\Matrix.h">
@@ -240,6 +243,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Command\SwitchCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\CollageCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

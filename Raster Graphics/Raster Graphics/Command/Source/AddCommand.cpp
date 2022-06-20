@@ -19,12 +19,12 @@ std::string AddCommand::execute() {
 
 	Image* image = ImageFactory::createImage(m_fileLocation);
 
-	m_session->addImage(image);
-
 	if (image == nullptr)
 		throw ImageException("Image creation failed");
 
 	image->readFromFile(file);
+
+	m_session->addImage(image);
 
 	file.close();
 

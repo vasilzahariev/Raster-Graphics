@@ -11,10 +11,20 @@ void Image::removeUnsavedChanges() {
 	clearPreviousVersions();
 }
 
-Image* Image::collage(Image* image1, Image* image2, std::string direction, std::string outImageLocation) {
-	/*if (typeid(image1) != typeid(image2))*/
+void Image::setMagicNumber(const std::uint16_t magicNumber) {
+	m_magicNumber = magicNumber;
+}
 
-	return nullptr;
+std::uint16_t Image::getMagicNumber() const {
+	return m_magicNumber;
+}
+
+void Image::setMaxColorValue(const std::uint16_t maxColorValue) {
+	m_maxColorValue = maxColorValue;
+}
+
+std::uint16_t Image::getMaxColorValue() const {
+	return m_maxColorValue;
 }
 
 Image::Image(std::string_view fileName, const bool grayscale, const bool monochrome, const std::uint16_t maxColorValue)
@@ -64,6 +74,7 @@ void Image::clearPreviousVersions() {
 	m_previousVersion->clearPreviousVersions();
 
 	delete m_previousVersion;
+	m_previousVersion = nullptr;
 }
 
 void Image::copy(Image* image) {

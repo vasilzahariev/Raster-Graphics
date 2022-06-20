@@ -97,6 +97,9 @@ void Session::undo() {
 void Session::saveImageToFile(Image* image, const std::string& fileName) {
 	std::ofstream file(fileName);
 
+	if (!file.is_open())
+		throw FileException("Couldn't open file");
+
 	image->writeToFile(file);
 }
 
