@@ -17,7 +17,7 @@ void Engine::run(std::istream& in, std::ostream& out) {
 		mainEngineLoop();
 	} while (dynamic_cast<ExitCommand*>(m_cmd) == nullptr);
 
-	checkForUnsavedChanges(); // TODO: nqkude se hvyrlq greshka vij kude
+	checkForUnsavedChanges();
 
 	printToOut("Goodbye");
 }

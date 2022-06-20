@@ -16,7 +16,7 @@ public:
 
 	static size_t getNumberOfArgs();
 
-	std::string execute() override; // TODO: Creates a Session that shouldn't be created when there's an error
+	std::string execute() override;
 
 private:
 	std::string m_fileLocation;

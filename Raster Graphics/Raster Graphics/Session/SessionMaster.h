@@ -15,7 +15,7 @@ public:
 
 	void addSession(const Session& session);
 
-	void closeActiveSession(); // TODO: Something's wrong I can feel it
+	void closeActiveSession();
 
 	bool checkIfFileAlreadyExists(std::string_view fileLocation) const;
 

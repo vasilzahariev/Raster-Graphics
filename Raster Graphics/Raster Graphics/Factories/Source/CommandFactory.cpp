@@ -8,7 +8,7 @@ Command* CommandFactory::createCommand(std::vector<std::string> args, SessionMas
 	if (commandType == "open") {
 		argsValidator(args, OpenCommand::getNumberOfArgs() + 1);
 
-		return new OpenCommand(sessionMaster, args[1]); // TODO: Look into
+		return new OpenCommand(sessionMaster, args[1]);
 	}
 	else if (commandType == "rotate") {
 		argsValidator(args, RotateCommand::getNumberOfArgs() + 1);
@@ -31,7 +31,7 @@ Command* CommandFactory::createCommand(std::vector<std::string> args, SessionMas
 		return new NegativeCommand(sessionMaster->getActiveSession());
 	}
 	else if (commandType == "add") {
-		argsValidator(args, AddCommand::getNumberOfArgs() + 1); // TODO: Look into
+		argsValidator(args, AddCommand::getNumberOfArgs() + 1);
 
 		return new AddCommand(sessionMaster, sessionMaster->getActiveSession(), args[1]);
 	}
