@@ -1,22 +1,32 @@
 #include "../Image.h"
 
 void Image::undo() {
+	if (m_previousVersion == nullptr)
+		throw CommandException("Undo command unavailable");
+
 	copy(m_previousVersion);
 }
 
 void Image::removeUnsavedChanges() {
-	// TODO: Go to the end of the reccursion and set the image to be equal to it
-	//clearPreviousVersions();
+	clearPreviousVersions();
+}
+
+Image* Image::collage(Image* image1, Image* image2, std::string direction, std::string outImageLocation) {
+	/*if (typeid(image1) != typeid(image2))*/
+
+	return nullptr;
 }
 
 Image::Image(std::string_view fileName, const bool grayscale, const bool monochrome, const std::uint16_t maxColorValue)
-	: m_fileName(fileName), bGrayscale(grayscale), bMonochrome(monochrome), m_maxColorValue(maxColorValue), m_previousVersion(nullptr) {
+	: m_fileName(fileName), bGrayscale(grayscale),
+	  bMonochrome(monochrome), m_maxColorValue(maxColorValue),
+	  m_previousVersion(nullptr) {
 }
 
 Image::Image(const Image& other)
-	: m_fileName(other.m_fileName), m_comments(other.m_comments), m_magicNumber(other.m_magicNumber),
-	  m_maxColorValue(other.m_magicNumber), bGrayscale(other.bGrayscale), bMonochrome(bMonochrome),
-	  m_previousVersion(other.m_previousVersion) {
+	: m_fileName(other.m_fileName), m_magicNumber(other.m_magicNumber),
+	  m_maxColorValue(other.m_magicNumber), bGrayscale(other.bGrayscale),
+	  bMonochrome(bMonochrome), m_previousVersion(other.m_previousVersion) {
 }
 
 std::string Image::getFileName() const {
@@ -36,39 +46,12 @@ void Image::readMagicNumberFromFile(std::ifstream& file) {
 	file >> m_magicNumber;
 }
 
-void Image::readCommentsFromFile(std::ifstream& file) {
-	// TODO: nz i aze veche
-	//std::string line = "";
-
-	//file.ignore();
-
-	//std::cout << file.peek() << " " << (int)'#' << std::endl;
-
-	//while (file.peek() == '#')
-	//	readCommentLineFromFile(file, line);
-}
-
-void Image::readCommentLineFromFile(std::ifstream& file, std::string& line) {
-	std::getline(file, line);
-
-	m_comments.push_back(line);
-}
-
 void Image::readMaxColorValueFromFile(std::ifstream& file) {
 	file >> m_maxColorValue;
 }
 
 void Image::writeMagicNumberToFile(std::ofstream& file) const {
 	file << 'P' << m_magicNumber << '\n';
-}
-
-void Image::writeCommentsToFile(std::ofstream& file) const {
-	for (std::vector<std::string>::const_iterator commentIt = m_comments.begin(); commentIt != m_comments.end(); ++commentIt)
-		writeCommentLineToFile(file, *commentIt);
-}
-
-void Image::writeCommentLineToFile(std::ofstream& file, std::string_view comment) const {
-	file << comment;
 }
 
 void Image::writeMaxColorValue(std::ofstream& file) const {
@@ -83,9 +66,13 @@ void Image::clearPreviousVersions() {
 	delete m_previousVersion;
 }
 
-void Image::copy(Image* const image) {
-	if (image == nullptr)
-		throw CommandException("Undo command unavailable");
+void Image::copy(Image* image) {
+	m_fileName = image->m_fileName;
+	m_magicNumber = image->m_magicNumber;
+	m_maxColorValue = image->m_maxColorValue;
+	bGrayscale = image->bGrayscale;
+	bMonochrome = image->bMonochrome;
+	m_previousVersion = image->m_previousVersion;
 
-	// TODO: Check what needs to be copied after doing the other commands
+	delete image;
 }

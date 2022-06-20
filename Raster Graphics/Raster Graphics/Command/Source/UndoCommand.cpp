@@ -4,7 +4,11 @@ UndoCommand::UndoCommand(Session* const session)
 	: m_session(session) {
 }
 
-std::string UndoCommand::executor() {
+size_t UndoCommand::getNumberOfArgs() {
+	return nArgs;
+}
+
+std::string UndoCommand::execute() {
 	m_session->undo();
 
 	return "Undo was successful";

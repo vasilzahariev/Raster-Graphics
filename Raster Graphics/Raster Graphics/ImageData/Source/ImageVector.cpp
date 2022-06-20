@@ -48,11 +48,11 @@ ImageVector::iterator ImageVector::end() {
 	return iterator(m_data + nSize);
 }
 
-ImageVector::const_iterator ImageVector::begin() const {
+ImageVector::const_iterator ImageVector::cbegin() const {
 	return const_iterator((const Image**) m_data);
 }
 
-ImageVector::const_iterator ImageVector::end() const {
+ImageVector::const_iterator ImageVector::cend() const {
 	return const_iterator((const Image**) (m_data + nSize));
 }
 

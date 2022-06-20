@@ -7,9 +7,12 @@ class UndoCommand : public Command {
 public:
 	UndoCommand(Session* const session);
 
-protected:
-	std::string executor() override;
+	static size_t getNumberOfArgs();
+
+	std::string execute() override;
 
 private:
 	Session* const m_session;
+
+	static const size_t nArgs = 0;
 };

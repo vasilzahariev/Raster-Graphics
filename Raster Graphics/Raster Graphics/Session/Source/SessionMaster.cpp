@@ -51,6 +51,10 @@ bool SessionMaster::checkIfFileAlreadyExists(std::string_view fileLocation) cons
 	return false;
 }
 
+bool SessionMaster::areThereUnsavedChanges() const {
+	return m_activeSession->areThereUnsavedChanges();
+}
+
 size_t SessionMaster::getSessionIndex(const Session* const session) const {
 	for (size_t index = 0; index < m_sessions.size(); ++index)
 		if (m_sessions[index].getId() == session->getId())

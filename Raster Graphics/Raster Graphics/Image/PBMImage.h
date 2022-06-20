@@ -31,5 +31,5 @@ private:
 
 	void writeRowsAndColsToFile(std::ofstream& file) const override;
 
-	void copy(Image* const image) override;
+	void copy(Image* image) override;
 };

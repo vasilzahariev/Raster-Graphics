@@ -3,6 +3,11 @@
 #include "Command.h"
 
 class ExitCommand : public Command {
+public:
+	static size_t getNumberOfArgs();
+
+	std::string execute() override;
+
 protected:
-	std::string executor() override;
+	static const size_t nArgs = 0;
 };

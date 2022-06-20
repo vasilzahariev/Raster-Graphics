@@ -6,6 +6,7 @@
 
 #include "RGBData.h"
 #include "../Exceptions/OutOfBoundsException.h"
+#include <functional>
 
 template <typename T>
 class Matrix {
@@ -36,10 +37,12 @@ private:
 	size_t nCols;
 
 	void deleteData();
+	void copyMatrix(const Matrix<T>& other);
 	void copy(const Matrix<T>& other);
 
-	void fillMatrixWithZeroes(const size_t rows, const size_t cols);
+	void fillMatrix(const size_t rows, const size_t cols, std::function<void(T&, size_t, size_t)> filler);
 
+	void fillMatrixWithZeroes(const size_t rows, const size_t cols);
 	void transpose();
 	void reverseRows();
 
@@ -75,40 +78,26 @@ inline size_t Matrix<T>::getCols() const {
 
 template<typename T>
 inline void Matrix<T>::readFromFile(std::ifstream& file) {
-	for (size_t row = 0; row < nRows; ++row) {
-		for (size_t col = 0; col < nCols; ++col) {
+	for (size_t row = 0; row < nRows; ++row)
+		for (size_t col = 0; col < nCols; ++col)
 			file >> m_data[row][col];
-		}
-	}
 }
 
 template<typename T>
 inline void Matrix<T>::writeToFile(std::ofstream& file) const {
-	for (size_t row = 0; row < nRows; ++row) {
-		for (size_t col = 0; col < nCols; ++col) {
-			file << m_data[row][col] << ' ';
-		}
-
-		file << '\n';
-	}
+	for (size_t row = 0; row < nRows; ++row)
+		for (size_t col = 0; col < nCols; ++col)
+			file << m_data[row][col] << (col == nCols - 1 ? '\n' : ' ');
 }
 
 template<typename T>
 inline void Matrix<T>::resize(const size_t rows, const size_t cols) {
-	T** blockOfMem = new T * [rows];
-	
-	for (size_t row = 0; row < rows; ++row) {
-		blockOfMem[row] = new T[cols];
-
-		for (size_t col = 0; col < cols; ++col) {
-			blockOfMem[row][col] = 0;
-		}
-	}
-
-	deleteData();
-	m_data = blockOfMem;
-	nRows = rows;
-	nCols = cols;
+	fillMatrix(rows, cols, [=](T& elem, size_t row, size_t col) {
+		if (row < nRows && col < nCols)
+			elem = m_data[row][col];
+		else
+			elem = 0;
+		});
 }
 
 template<typename T>
@@ -152,72 +141,56 @@ inline void Matrix<T>::deleteData() {
 }
 
 template<typename T>
-inline void Matrix<T>::copy(const Matrix<T>& other) {
+inline void Matrix<T>::copyMatrix(const Matrix<T>& other) {
 	nRows = other.nRows;
 	nCols = other.nCols;
-	deleteData();
 
 	m_data = new T * [nRows];
 
 	for (size_t row = 0; row < nRows; ++row) {
 		m_data[row] = new T[nCols];
 
-		for (size_t col = 0; col < nCols; ++col) {
+		for (size_t col = 0; col < nCols; ++col)
 			m_data[row][col] = other.m_data[row][col];
-		}
 	}
+}
+
+template<typename T>
+inline void Matrix<T>::copy(const Matrix<T>& other) {
+	deleteData();
+	copyMatrix(other);
+}
+
+template<typename T>
+inline void Matrix<T>::fillMatrix(const size_t rows, const size_t cols, std::function<void(T&, size_t, size_t)> filler) {
+	T** blockOfMem = new T * [rows];
+
+	for (size_t row = 0; row < rows; ++row) {
+		blockOfMem[row] = new T[cols];
+
+		for (size_t col = 0; col < cols; ++col)
+			filler(blockOfMem[row][col], row, col);
+	}
+
+	deleteData();
+	m_data = blockOfMem;
+	nRows = rows;
+	nCols = cols;
 }
 
 template<typename T>
 inline void Matrix<T>::fillMatrixWithZeroes(const size_t rows, const size_t cols) {
-	deleteData();
-
-	nRows = rows;
-	nCols = cols;
-
-	m_data = new T * [nRows];
-
-	for (size_t row = 0; row < nRows; ++row) {
-		m_data[row] = new T[nCols];
-
-		for (size_t col = 0; col < nCols; ++col) {
-			m_data[row][col] = 0;
-		}
-	}
+	fillMatrix(rows, cols, [](T& elem, size_t, size_t) { elem = 0; });
 }
 
 template<typename T>
 inline void Matrix<T>::transpose() {
-	size_t tempRows = nCols;
-	size_t tempCols = nRows;
-	T** temp = new T * [tempRows];
-	for (size_t row = 0; row < tempRows; ++row) {
-		temp[row] = new T[tempCols];
-
-		for (size_t col = 0; col < tempCols; ++col) {
-			temp[row][col] = m_data[col][row];
-		}
-	}
-
-	deleteData();
-	m_data = temp;
-	nRows = tempRows;
-	nCols = tempCols;
+	fillMatrix(nCols, nRows, [=](T& elem, size_t row, size_t col) { elem = m_data[col][row]; });
 }
 
 template<typename T>
 inline void Matrix<T>::reverseRows() {
-	T** temp = new T * [nRows];
-	for (size_t row = 0; row < nRows; ++row) {
-		temp[row] = new T[nCols];
-
-		for (size_t col = 0; col < nCols; ++col) {
-			temp[row][col] = m_data[nRows - row - 1][col];
-		}
-	}
-
-	deleteData();
-	m_data = temp;
+	fillMatrix(nRows, nCols, [=](T& elem, size_t row, size_t col) { elem = m_data[nRows - row - 1][col]; });
 }
 
 template<typename T>

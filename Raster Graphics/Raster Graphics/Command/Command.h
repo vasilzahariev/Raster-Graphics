@@ -10,8 +10,10 @@
 
 class Command {
 public:
-	std::string execute();
+	virtual std::string execute() = 0;
 
-protected:
-	virtual std::string executor() = 0;
+	static size_t getNumberOfArgs();
+
+private:
+	static const size_t nArgs = 0;
 };

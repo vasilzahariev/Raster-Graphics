@@ -1,10 +1,17 @@
 #include "../AddCommand.h"
 
-AddCommand::AddCommand(Session* const session, std::string_view fileLocation)
-	: m_session(session), m_fileLocation(fileLocation) {
+AddCommand::AddCommand(SessionMaster* const sessionMaster, Session* const session, std::string_view fileLocation)
+	: m_sessionMaster(sessionMaster), m_session(session), m_fileLocation(fileLocation) {
 }
 
-std::string AddCommand::executor() {
+size_t AddCommand::getNumberOfArgs() {
+	return nArgs;
+}
+
+std::string AddCommand::execute() {
+	if (m_sessionMaster->checkIfFileAlreadyExists(m_fileLocation))
+		throw CommandException("File is already open");
+
 	std::ifstream file(m_fileLocation);
 
 	if (!file.is_open())

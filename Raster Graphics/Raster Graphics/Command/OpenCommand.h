@@ -14,10 +14,13 @@ class OpenCommand : public Command {
 public:
 	OpenCommand(SessionMaster* const sessionMaster, std::string_view fileLocation);
 
-protected:
-	std::string executor() override;
+	static size_t getNumberOfArgs();
+
+	std::string execute() override; // TODO: Creates a Session that shouldn't be created when there's an error
 
 private:
 	std::string m_fileLocation;
 	SessionMaster* const m_sessionMaster;
+
+	static const size_t nArgs = 1;
 };

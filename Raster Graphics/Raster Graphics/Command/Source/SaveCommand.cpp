@@ -4,7 +4,11 @@ SaveCommand::SaveCommand(Session* const session)
     : m_session(session) {
 }
 
-std::string SaveCommand::executor() {
+size_t SaveCommand::getNumberOfArgs() {
+    return nArgs;
+}
+
+std::string SaveCommand::execute() {
     m_session->saveChanges();
 
     return "Save was successful";

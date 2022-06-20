@@ -4,7 +4,11 @@ RotateCommand::RotateCommand(Session* const sessionMaster, std::string_view dire
 	: m_session(sessionMaster), m_direction(direction) {
 }
 
-std::string RotateCommand::executor() {
+size_t RotateCommand::getNumberOfArgs() {
+	return nArgs;
+}
+
+std::string RotateCommand::execute() {
 	m_session->rotate(m_direction);
 
 	return "Rotate was successful";

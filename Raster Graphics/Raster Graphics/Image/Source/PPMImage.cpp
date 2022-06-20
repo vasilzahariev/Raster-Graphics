@@ -16,7 +16,6 @@ PPMImage* PPMImage::clone() {
 
 void PPMImage::readFromFile(std::ifstream& file) {
 	readMagicNumberFromFile(file);
-	readCommentsFromFile(file);
 	readRowsAndColsFromFileAndResizePixels(file);
 	readMaxColorValueFromFile(file);
 	m_pixels.readFromFile(file);
@@ -24,7 +23,6 @@ void PPMImage::readFromFile(std::ifstream& file) {
 
 void PPMImage::writeToFile(std::ofstream& file) {
 	writeMagicNumberToFile(file);
-	writeCommentsToFile(file);
 	writeRowsAndColsToFile(file);
 	writeMaxColorValue(file);
 	m_pixels.writeToFile(file);
@@ -45,19 +43,13 @@ void PPMImage::grayscale() {
 }
 
 void PPMImage::monochrome() {
-	for (size_t row = 0; row < m_pixels.getRows(); ++row) {
-		for (size_t col = 0; col < m_pixels.getCols(); ++col) {
+	for (size_t row = 0; row < m_pixels.getRows(); ++row)
+		for (size_t col = 0; col < m_pixels.getCols(); ++col)
 			m_pixels.getElementAt(row, col).normalizeByValue(m_maxColorValue);
-		}
-	}
 }
 
 void PPMImage::negative() {
-	for (size_t row = 0; row < m_pixels.getRows(); ++row) {
-		for (size_t col = 0; col < m_pixels.getCols(); ++col) {
-			m_pixels.getElementAt(row, col).transformToNegative(m_maxColorValue);
-		}
-	}
+	ImageUtilities<RGBData>::negativeTransformation(m_pixels, m_maxColorValue);
 }
 
 void PPMImage::readRowsAndColsFromFileAndResizePixels(std::ifstream& file) {
@@ -68,9 +60,7 @@ void PPMImage::writeRowsAndColsToFile(std::ofstream& file) const {
 	ImageUtilities<RGBData>::writePixelsRowsAndColsToFile(file, m_pixels);
 }
 
-void PPMImage::copy(Image* const image) {
-	Image::copy(image);
-
+void PPMImage::copy(Image* image) {
 	PPMImage* ppm = dynamic_cast<PPMImage*>(image);
 
 	if (ppm == nullptr)
@@ -78,5 +68,5 @@ void PPMImage::copy(Image* const image) {
 
 	m_pixels = ppm->m_pixels;
 
-	// TODO: Check when you should delete image;
+	Image::copy(image);
 }

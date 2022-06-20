@@ -14,14 +14,12 @@ PBMImage* PBMImage::clone() {
 
 void PBMImage::readFromFile(std::ifstream& file) {
 	readMagicNumberFromFile(file);
-	readCommentsFromFile(file);
 	readRowsAndColsFromFileAndResizePixels(file);
 	m_pixels.readFromFile(file);
 }
 
 void PBMImage::writeToFile(std::ofstream& file) {
 	writeMagicNumberToFile(file);
-	writeCommentsToFile(file);
 	writeRowsAndColsToFile(file);
 	m_pixels.writeToFile(file);
 
@@ -43,13 +41,7 @@ void PBMImage::monochrome() {
 }
 
 void PBMImage::negative() {
-	for (size_t row = 0; row < m_pixels.getRows(); ++row) {
-		for (size_t col = 0; col < m_pixels.getCols(); ++col) {
-			std::uint16_t& pixel = m_pixels.getElementAt(row, col);
-
-			pixel = m_maxColorValue - pixel;
-		}
-	}
+	ImageUtilities<std::uint16_t>::negativeTransformation(m_pixels, m_maxColorValue);
 }
 
 void PBMImage::readRowsAndColsFromFileAndResizePixels(std::ifstream& file) {
@@ -60,15 +52,13 @@ void PBMImage::writeRowsAndColsToFile(std::ofstream& file) const {
 	ImageUtilities<std::uint16_t>::writePixelsRowsAndColsToFile(file, m_pixels);
 }
 
-void PBMImage::copy(Image* const image) {
-	Image::copy(image);
-
+void PBMImage::copy(Image* image) {
 	PBMImage* pbm = dynamic_cast<PBMImage*>(image);
 
 	if (pbm == nullptr)
-		throw ImageException("Incorrect image type");
+		throw ImageException("Trying to copy incorrect image type");
 
 	m_pixels = pbm->m_pixels;
 
-	// TODO: Check when you should delete image;
+	Image::copy(image);
 }

@@ -30,4 +30,6 @@ private:
 	CommandFactory() = delete;
 	CommandFactory(const CommandFactory&) = delete;
 	CommandFactory& operator=(const CommandFactory&) = delete;
+
+	static void argsValidator(const std::vector<std::string> args, const size_t numberOfArgs, bool(*validator)(const std::vector<std::string>& str) = nullptr);
 };

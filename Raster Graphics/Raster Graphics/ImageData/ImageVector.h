@@ -25,8 +25,8 @@ public:
 	iterator begin();
 	iterator end();
 
-	const_iterator begin() const;
-	const_iterator end() const;
+	const_iterator cbegin() const;
+	const_iterator cend() const;
 
 	ImageVector& operator=(const ImageVector& other);
 

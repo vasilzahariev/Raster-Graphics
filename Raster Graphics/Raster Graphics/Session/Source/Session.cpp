@@ -10,6 +10,10 @@ int Session::getId() const {
 	return nId;
 }
 
+Session::~Session() {
+	close();
+}
+
 void Session::grayscale() {
 	for (ImageVector::iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt)
 		if (!(*imageIt)->isGrayscale() && !(*imageIt)->isMonochrome())
@@ -52,7 +56,13 @@ void Session::negative() {
 }
 
 void Session::saveAs(const std::string& fileName) {
+	if (m_images.size() == 0)
+		throw SessionException("FATAL: No images in an active session");
+	
 	saveImageToFile(m_images[0], fileName);
+
+	if (m_images.size() == 1)
+		m_unsavedChanges.clear();
 }
 
 void Session::close() {
@@ -62,8 +72,24 @@ void Session::close() {
 }
 
 void Session::undo() {
-	for (ImageVector::iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt)
-		(*imageIt)->undo(); // TODO: Check what to do about the first one
+	if (m_unsavedChanges.size() == 0)
+		throw CommandException("Undo command unavailable");
+
+	std::string msg = "";
+
+	for (ImageVector::iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt) {
+		try {
+			(*imageIt)->undo();
+
+			msg = "";
+		}
+		catch (const CommandException& err) {
+			msg = err.what();
+		}
+	}
+
+	if (msg != "")
+		throw CommandException(msg);
 
 	m_unsavedChanges.pop_back();
 }
@@ -93,9 +119,13 @@ std::string Session::info(std::ostream& out) const {
 }
 
 bool Session::containsFile(std::string_view fileLocation) const {
-	for (ImageVector::const_iterator imageIt = m_images.begin(); imageIt != m_images.end(); ++imageIt)
+	for (ImageVector::const_iterator imageIt = m_images.cbegin(); imageIt != m_images.cend(); ++imageIt)
 		if ((*imageIt)->getFileName() == fileLocation)
 			return true;
 
 	return false;
+}
+
+bool Session::areThereUnsavedChanges() const {
+	return m_unsavedChanges.size() != 0;
 }

@@ -4,7 +4,11 @@ SessionInfoCommand::SessionInfoCommand(Session* const session)
 	: m_session(session) {
 }
 
-std::string SessionInfoCommand::executor() {
+size_t SessionInfoCommand::getNumberOfArgs() {
+	return nArgs;
+}
+
+std::string SessionInfoCommand::execute() {
 	if (m_session == nullptr)
 		throw SessionException("There is no active session");
 

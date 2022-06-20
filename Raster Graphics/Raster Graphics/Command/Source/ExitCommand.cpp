@@ -1,5 +1,9 @@
 #include "../ExitCommand.h"
 
-std::string ExitCommand::executor() {
-    return "Goodbye";
+size_t ExitCommand::getNumberOfArgs() {
+    return nArgs;
+}
+
+std::string ExitCommand::execute() {
+    return "";
 }

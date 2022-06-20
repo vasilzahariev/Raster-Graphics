@@ -1,6 +1,10 @@
 #include "../HelpCommand.h"
 
-std::string HelpCommand::executor() {
+size_t HelpCommand::getNumberOfArgs() {
+	return nArgs;
+}
+
+std::string HelpCommand::execute() {
 	std::string output = "";
 
 	output += "The following commands are supported:\n";

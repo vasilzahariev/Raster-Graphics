@@ -15,9 +15,11 @@ public:
 
 	void addSession(const Session& session);
 
-	void closeActiveSession();
+	void closeActiveSession(); // TODO: Something's wrong I can feel it
 
 	bool checkIfFileAlreadyExists(std::string_view fileLocation) const;
+
+	bool areThereUnsavedChanges() const;
 
 private:
 	Session* m_activeSession;

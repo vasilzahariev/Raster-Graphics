@@ -1,10 +1,15 @@
 #include "../OpenCommand.h"
 
+
 OpenCommand::OpenCommand(SessionMaster* const sessionMaster, std::string_view fileLocation)
 	: m_sessionMaster(sessionMaster), m_fileLocation(fileLocation) {
 }
 
-std::string OpenCommand::executor() {
+size_t OpenCommand::getNumberOfArgs() {
+	return nArgs;
+}
+
+std::string OpenCommand::execute() {
 	if (m_sessionMaster->checkIfFileAlreadyExists(m_fileLocation))
 		throw CommandException("File is already open");
 

@@ -25,23 +25,35 @@ void RGBData::writeTo(std::ostream& out) const {
 void RGBData::transformToGrayscale() {
 	std::uint16_t gray = std::round((GRAY_MULTIPLIERS[0] * red) + (GRAY_MULTIPLIERS[1] * green) + (GRAY_MULTIPLIERS[2] * blue));
 
-	red = gray;
-	green = gray;
-	blue = gray;
+	setRGB(gray);
 }
 
 void RGBData::normalizeByValue(const std::uint16_t value) {
 	std::uint16_t BWVal = std::round((double)(red + green + blue) / (3 * value));
 
-	red = value * BWVal;
-	green = value * BWVal;
-	blue = value * BWVal;
+	setRGB(value * BWVal);
 }
 
 void RGBData::transformToNegative(const std::uint16_t value) {
-	red = value - red;
-	green = value - green;
-	blue = value - blue;
+	*this = value - *this;
+}
+
+void RGBData::setRGB(const std::uint16_t val) {
+	red = val;
+	green = val;
+	blue = val;
+}
+
+void RGBData::setRGB(const std::uint16_t R, const std::uint16_t G, const std::uint16_t B) {
+	red = R;
+	green = G;
+	blue = B;
+}
+
+RGBData& operator-(const std::uint16_t val, RGBData& rgb) {
+	rgb.setRGB(val - rgb.red, val - rgb.green, val - rgb.blue);
+
+	return rgb;
 }
 
 std::istream& operator>>(std::istream& in, RGBData& RGBData) {

@@ -18,4 +18,21 @@ private:
 	Engine& operator=(const Engine& other) = delete;
 
 	SessionMaster m_sessionMaster;
+	std::istream* m_in;
+	std::ostream* m_out;
+	std::string m_line;
+	Command* m_cmd;
+
+private:
+	void mainEngineLoop();
+
+	void setInAndOut(std::istream& in, std::ostream& out);
+
+	void checkIfTheStreamsAreCorrect() const;
+	void printInputSymbol() const;
+	void readLine();
+	void parseAndExecuteCommand();
+	void checkIfCommandIsCorrect() const;
+	void printToOut(std::string_view output);
+	void checkForUnsavedChanges();
 };

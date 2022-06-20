@@ -12,6 +12,7 @@ public:
 
 public:
 	Session();
+	~Session();
 
 	int getId() const;
 
@@ -34,7 +35,7 @@ public:
 
 	bool containsFile(std::string_view fileLocation) const;
 
-	// TODO: Method that cheks if there are unsaved changes
+	bool areThereUnsavedChanges() const;
 
 private:
 	int nId;
