@@ -9,7 +9,7 @@
 1. [Конфигуриране на приложението](https://github.com/vasilzahariev/FMI-OOP-Raster-Graphics/#конфигуриране-на-приложението)
 2. [Функционалности](https://github.com/vasilzahariev/FMI-OOP-Raster-Graphics/#функционалности)
 3. [Структура на проекта](https://github.com/vasilzahariev/FMI-OOP-Raster-Graphics/#структура-на-проекта)
-    1. [Main](https://github.com/vasilzahariev/FMI-OOP-Raster-Graphics/#main)
+    1. [Main.cpp](https://github.com/vasilzahariev/FMI-OOP-Raster-Graphics/#maincpp)
     2. [Engine](https://github.com/vasilzahariev/FMI-OOP-Raster-Graphics/#engine)
     3. [Command](https://github.com/vasilzahariev/FMI-OOP-Raster-Graphics/#command)
     4. [Image](https://github.com/vasilzahariev/FMI-OOP-Raster-Graphics/#image)
@@ -39,17 +39,43 @@
 
 ## Структура на проекта
 
-### Main
+### Main.cpp
+Съдържа *int main()* функцията, която служи за стартова точка на програмата.
 
 ### Egnine
 Класът **Engine** представлява Singleton клас, който отговаря за входовете и изходите. Той се грижи за поемането и обработването на грешки.
 
-| Метод | Описание | Параметри |
-| ------ | ------ | ------ |
-| *static Engine& getInstance()* | Връща референция към единствената възможна инстанция на **Engine** класа | - |
-| *void run(std::istream& in = std::cin, std::ostream& out = std::cout)* | Пуска основната функционалност на програмата | ***std::istream& in*** -> входният поток (по подозиране е std::cin)<br /><br />***std::ostream& out*** -> изходният поток (по подозиране е std::cout) |
+| Видимост | Метод | Описание | Параметри |
+| ------ | ------ | ------ | ------ |
+| public | *static Engine& getInstance()* | Връща референция към единствената възможна инстанция на **Engine** класа. | - |
+| public | *void run(std::istream& in = std::cin, std::ostream& out = std::cout)* | Пуска основната функционалност на програмата. | ***std::istream& in*** -> входният поток (по подозиране е std::cin)<br /><br />***std::ostream& out*** -> изходният поток (по подозиране е std::cout) |
 
 ### Command
+Програмата трябва да поддържа, валидира и работи с 15 разлчни команди. За реализацията на работата с команди беше използван Command Design Pattern-а. Това се усъщесвява като се създават следните 3 главни класа:
+
+#### **CommandParser**
+Клас обработващ входните данни към такива, които могат да бъдат използва от CommandFactory за създаване на нужната команда.
+
+| Видимост | Метод | Описание | Параметри |
+| ------ | ------ | ------ | ------ |
+| public | *static Command\* parseCommandLine(std::string line, SessionMaster\* sessionMaster)* | Статичен метод, преобразуващ входен ред в STL вектор от аргументи, като преди това премахва ненужните празни места и проверява дали броят на къвичките е правялен. | ***std::string line*** -> входен ред<br /><br /> ***SessionMaster* sessionMaster*** -> Пойнтър към обект от тип **SessionMaster**, който се подава за използване от **CommandFactory** |
+
+#### **CommandFactory**
+Клас, който използва разделени в STL вектор аргументи, за да създаде обект от нужният тип команда. Реализиран е чрез употребата на Factory Design Pattern.
+
+| Видимост | Метод | Описание | Параметри |
+| ------ | ------ | ------ | ------ |
+| public | static Command* createCommand(std::vector\<std::string> args, SessionMaster* sessionMaster) | Създава и връща команда според нуждният вид, както и валидира дали такъв вид команда съществува и дали аргументите са коректни. | ***std::vector\<std::string> args*** -> аргументите от командият ред<br/><br/> ***SessionMaster* sessionMaster*** -> Обект от тип **SessionMaster**, използван за подаване на нужните данни към определени команди |
+
+#### **Command**
+Абстрактен клас, който служи за базов на всяка команда.(За после: Повечете наследници изискват нужните за тях обекти за изпълнението на определената команда)
+
+| Видимост | Метод | Описание | Параметри |
+| ------ | ------ | ------ | ------ |
+| public | virtual std::string execute() = 0 | Виртуален метод, който е оставен да бъде реализиран в наследниците на **Command**. Връща ***std::string***, който служи като съобщение за успешното изпълнение на командата. | - |
+| public | static size_t getNumberOfArgs() | Връща нужният брой аргументи, изскван от командният ред | - |
+
+Всяка команда реализира нуджните методи за Command, като някои наследници може да изискват определени обекти да им бъдат подадени, за коректното им изпълнение. Пример: **RotateCommand** е класът отговорен за екзекуцията на командата *rotate*, но за да бъде изпълнена тя, класът се нуджае от пойнтър към активната сесия, за да е възможно прилагането на командата върху всички снимки в нея. Също така класът се нуждае и от посоката на завъртане.
 
 ### Image
 
