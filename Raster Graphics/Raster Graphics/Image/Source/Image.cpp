@@ -39,6 +39,10 @@ Image::Image(const Image& other)
 	  bMonochrome(bMonochrome), m_previousVersion(other.m_previousVersion) {
 }
 
+Image::~Image() {
+	clearPreviousVersions();
+}
+
 std::string Image::getFileName() const {
 	return m_fileName;
 }

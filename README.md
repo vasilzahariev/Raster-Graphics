@@ -14,7 +14,9 @@
     3. [Command](https://github.com/vasilzahariev/FMI-OOP-Raster-Graphics/#command)
     4. [Image](https://github.com/vasilzahariev/FMI-OOP-Raster-Graphics/#image)
     5. [Session](https://github.com/vasilzahariev/FMI-OOP-Raster-Graphics/#session)
-
+4. Бъдещи планове - crop, resize, jpg и png поддръжка
+5. Версии
+# Премахни save и saveas да махат предишните версии!
 ## Конфигуриране на приложението
 
 ## Функционалности
@@ -80,28 +82,73 @@
 ### Image
 Тъй като програмата трябва да поддържа 3 различни вида снимки, които имат много подобно изразяване, но всеки от тях има нещо различно. Било тя някоя стойност, начин на съхраняване на данните или дори невъзможността за изпълнение на определени команди.
 
-Преди изграждането на класовете, които ще преставляват различните снимки, ще трябва да се добавят начините по които ще се пази информацията за снимките. Това се случва в 2 класа:
+Преди изграждането на класовете, които ще преставляват различните снимки, ще трябва да се добавят начините по които ще се пази информацията за снимките. Това се случва в следните 2 класа:
 
 #### **RGBData**
 Структура, представяща цветен пиксел и неговите стойностти за червено, зелено и синьо.
+
 | Видимост | Метод / Поле | Описание | Параметри |
 | ------ | ------ | ------ | ------ |
-| public | std::uint16_t red | Сойността на червеното | - |
-| public | std::uint16_t green | Сойността на зеленото | - |
-| public | std::uint16_t blue | Сойността на синьото | - |
-| public | RGBData(const std::uint16_t val = 0) | Конструктор с параметър (също служи за подозиране тъй като параметъра има стойност по подозиране). Слага стойността на *val* за *red, green, blue* | ***const std::uint16_t val*** - Стойността, която ще се сложи на *red, green* и *blue* |
-| public | RGBData(const std::uint16_t red, const std::uint16_t green, const std::uint16_t blue); | Конструктор с параметри. | ***const sd::uint16_t red*** -> Стойност, която ще се сложи на *red*<br/><br/>***const sd::uint16_t green*** -> Стойност, която ще се сложи на *green*<br/><br/>***const sd::uint16_t blue*** -> Стойност, която ще се сложи на *blue* |
-| public | bool operator==(const RGBData& other) const | Предефиниране на оператора "==". Проверява дали 2 обекта от тип **RGBData** са равни. | ***const RGBData& other*** -> Обектът, с който ще бъде сравняван *this* обекта. |
-| public | void readFrom(std::istream& in = std::cin) | Прочита информация за **RGBData** от определен поток. | ***std::istream& in*** -> Потокът, от който прочита информацията. |
-| public | void writeTo(std::ostream& out = std::cout) const | Записва информацията на **RGBData** в определен поток. | ***std::ostream& out*** -> Потокът, в който ще се запише информацията. |
-| public | void transformToGrayscale() | Сменя стойностите на пикселите така че да са сиви. Сивата стойност се пресмята по формулата:<br/>***R * 0.299 + G * 0.587 + B * 0.114*** | - |
-| public | void normalizeByValue(const std::uint16_t value) | Според определена стойност се пресмята нова обща стойност, която или ще е 0 или определената стойност (тоест бяло или черно). Новата обща стойност се пресмята, чрез следната формула:<br/>***round((R + G + B) / 3 \* (value))*** | ***const std::uint16_t value*** -> Определената стойност, служеща за пресмятането на новата обща. |
-| public | void transformToNegative(const std::uint16_t value) | Приема определена стойност и пресмята обратната стойност за *red*, *green* и *blue* относно тази определена стойност. | ***const std::uint16_t value*** -> Определената стойност използвана за пресмятането на обратните стойности |
-| public | void setRGB(const std::uint16_t val) | ------ | ------ |
-| public | void setRGB(const std::uint16_t R, const std::uint16_t G, const std::uint16_t B) | ------ | ------ |
-| public | RGBData operator*(const std::uint16_t val) | ------ | ------ |
-| public | friend RGBData& operator-(const std::uint16_t val, RGBData& rgb) | ------ | ------ |
-| public | friend std::istream& operator>>(std::istream& in, RGBData& RGBData) | ------ | ------ |
-| public | friend std::ostream& operator<<(std::ostream& out, const RGBData& RGBData) | ------ | ------ |
+| public | *std::uint16_t red* | Сойността на червеното | - |
+| public | *std::uint16_t green* | Сойността на зеленото | - |
+| public | *std::uint16_t blue* | Сойността на синьото | - |
+| public | *RGBData(const std::uint16_t val = 0)* | Конструктор с параметър (също служи за подозиране тъй като параметъра има стойност по подозиране). Слага стойността на *val* за *red, green, blue* | ***const std::uint16_t val*** - Стойността, която ще се сложи на *red, green* и *blue* |
+| public | *RGBData(const std::uint16_t red, const std::uint16_t green, const std::uint16_t blue)* | Конструктор с параметри. | ***const sd::uint16_t red*** -> Стойност, която ще се сложи на *red*<br/><br/>***const sd::uint16_t green*** -> Стойност, която ще се сложи на *green*<br/><br/>***const sd::uint16_t blue*** -> Стойност, която ще се сложи на *blue* |
+| public | *bool operator==(const RGBData& other) const* | Предефиниране на оператора "==". Проверява дали 2 обекта от тип **RGBData** са равни. | ***const RGBData& other*** -> Обектът, с който ще бъде сравняван *this* обекта. |
+| public | *void readFrom(std::istream& in = std::cin)* | Прочита информация за **RGBData** от определен поток. | ***std::istream& in*** -> Потокът, от който прочита информацията. |
+| public | *void writeTo(std::ostream& out = std::cout) const* | Записва информацията на **RGBData** в определен поток. | ***std::ostream& out*** -> Потокът, в който ще се запише информацията. |
+| public | *void transformToGrayscale()* | Сменя стойностите на пикселите така че да са сиви. Сивата стойност се пресмята по формулата:<br/>***R * 0.299 + G * 0.587 + B * 0.114*** | - |
+| public | *void normalizeByValue(const std::uint16_t value)* | Според определена стойност се пресмята нова обща стойност, която или ще е 0 или определената стойност (тоест бяло или черно). Новата обща стойност се пресмята, чрез следната формула:<br/>***round((R + G + B) / 3 \* (value))*** | ***const std::uint16_t value*** -> Определената стойност, служеща за пресмятането на новата обща. |
+| public | *void transformToNegative(const std::uint16_t value)* | Приема определена стойност и пресмята обратната стойност за *red*, *green* и *blue* относно тази определена стойност. | ***const std::uint16_t value*** -> Определената стойност използвана за пресмятането на обратните стойности |
+| public | *void setRGB(const std::uint16_t val)* | Задава определена стойност на *red*, *green* и *blue* | ***const std::uint16_t val*** -> Определената стойност, която се задава на всички полета на **RGBData**. |
+| public | *void setRGB(const std::uint16_t R, const std::uint16_t G, const std::uint16_t B)* | Задава определена стойност за всяко определено поле. | ***const std::uint16_t R*** -> Определената стойност, която се задава на *red*<br/><br/>***const std::uint16_t G*** -> Определената стойност, която се задава на *green*<br/><br/>***const std::uint16_t B*** -> Определената стойност, която се задава на *blue* |
+| public | *RGBData operator*(const std::uint16_t val)* | Предефиниране на оператор "\*". Умножава всяко от полетата на **RGBData** по определена стойност. | ***const std::uint16_t val*** -> Определената стойност |
+| public | *friend RGBData& operator-(const std::uint16_t val, RGBData& rgb)* | Предефиниране на оператор "-". Взима стойността на всяко поле на подадеденият **RGBData** обект и изважда тяхната стойност от определената. | ***const std::uint16_t val*** -> Определената стойност<br/><br/>***RGBData& rgb*** -> Обектът, чиито стойности на полетата ще бъдат променени |
+| public | *friend std::istream& operator>>(std::istream& in, RGBData& rgb)* | Предефиниране на оператор ">>". Прочита **RGBData** обект от определен поток. | ***std::istream& in*** -> Потокът, от който се прочита нужната информация.<br/><br/>***RGBData& rgb*** -> Обектът, в който се записва прочетената информация. |
+| public | *friend std::ostream& operator<<(std::ostream& out, const RGBData& rgb)* | Предефиниране на оператор "<<". Записва информацията на **RGBData** обект в определен поток.  | ***std::ostream& out*** -> Определеният поток, в който се записва информацията<br/><br/>***const RGBData& rgb*** -> Обектът, съдържащ информацията, която ще се запише в потока |
+
+#### **Matrix<T>**
+Темплейтен (шаблонен) клас, който представлява матрица в математическият смисъл. Този клас е нужен, тъй като изображенията, с които работи проекта са такива, че се представят с матрица.
+
+T - Темплейтният тип
+
+| Видимост | Метод / Поле | Описание | Параметри |
+| ------ | ------ | ------ | ------ |
+| private | *T** m_data* | Динамично заделената матрица. | - |
+| private | *size_t nRows* | Брой редове. | - |
+| private | *size_t nCols* | Брой колони. | - |
+| public | *Matrix(const size_t rows = 0, const size_t cols = 0)* | Конструктор с параметри (служи и за подозиране, тъй като параметрите имат стойности по подозиране). Създава матрица с определен брой редове и колони, като всеки елемент в нея има стойност: 0. | ***const size_t rows*** -> Определен брой редове<br/><br/>***const size_t cols*** -> Определен брой колони |
+| public | *Matrix(const Matrix<T>& other)* | Копиращ конструктор. | ***const Matrix<T>& other*** -> Обектът от който се копира информацията |
+| public | *~Matrix()* | Деструктор. | - |
+| public | *size_t getRows() const* | Гетър (селектор) за nRows. | - |
+| public | *size_t getCols() const* | Гетър (селектор) за nRows. | - |
+| public | *void readFromFile(std::ifstream& file)* | Прочита информация за **Matrix<T>** обект от определен файлов поток. | ***std::ifstream& file*** -> Определеният файлов поток |
+| public | void writeToFile(std::ofstream& file) const | Записва информацията на **Matrix<T>** обект в определен файлов поток. | ***std::ofstream& file*** -> Определеният файлов поток |
+| public | *void resize(const size_t rows, const size_t cols)* | Променя на големината на матрицата, като всички части от старата версия на матрицата, за които същестуват същите позиции, се презаписват на тях. | ***const size_t rows*** -> Новият брой редове<br/><br/>***const size_t cols*** -> Новият брой колони |
+| public | *void rotateRight()* | Затърта матрицата на дясно(+90 градуса), като алгоритъма за това е първо матрицата да си завърти редовете и после да се превърне в транспортираната си версия. | - |
+| public | *void rotateLeft()* | Затърта матрицата на ляво(-90 градуса), като алгоритъма за това е първо матрицата да се превърне в транспортираната си версия и после да завърти редовете си. | - |
+| public | *T& getElementAt(const size_t row, const size_t col)* | Връща елемента на определена позиция. | ***const size_t row*** -> Ред, на който се намира определен елемент<br/><br/>***const size_t col*** -> Колона, на която се намира опеделен елемент |
+| public | *const T& getElementAt(const size_t row, const size_t col) const* | Връща елемента на определена позиция | ***const size_t row*** -> Ред, на който се намира определен елемент<br/><br/>***const size_t col*** -> Колона, на която се намира опеделен елемент |
+| public | *Matrix<T>& operator=(const Matrix<T>& other)* | ------ | ------ |
+| public | *static Matrix<T> combineHorizontally(const Matrix<T>& matrix1, const Matrix<T>& matrix2, const std::uint16_t maxValues[3])* | ------ | ------ |
+| public | *static Matrix<T> combineVertically(const Matrix<T>& matrix1, const Matrix<T>& matrix2, const std::uint16_t maxValues[3])* | ------ | ------ |
+
+#### **Image**
+Абстрактният клас **Image** представлява всичката нужда информация и възможни трансформации, които могат да бъдат изпълнени върху едно изображение (с изключение на пикселите, за които ще бъде обяснено защо не са там след малко).
+
+| Видимост | Метод | Описание | Параметри |
+| ------ | ------ | ------ | ------ |
+| ------ | ------ | ------ | ------ |
+
+#### **PBMImage, PGMImage, PPMImage**
+Това са 3те вида ...
+
+#### **ImageFactory**
+Класът е реализиран изолзвайки Factory Design Pattern-а. Основната му цел е да създава изображения по подадена файлова локация.
+
+| Видимост | Метод | Описание | Параметри |
+| ------ | ------ | ------ | ------ |
+| ------ | ------ | ------ | ------ |
+
 
 ### Session

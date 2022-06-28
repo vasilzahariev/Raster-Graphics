@@ -12,6 +12,7 @@
 
 class Image {
 public:
+	~Image();
 	std::string getFileName() const;
 
 	bool isGrayscale() const;
