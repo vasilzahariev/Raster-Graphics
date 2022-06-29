@@ -26,8 +26,6 @@ void PGMImage::writeToFile(std::ofstream& file) {
 	writeRowsAndColsToFile(file);
 	writeMaxColorValue(file);
 	m_pixels.writeToFile(file);
-
-	clearPreviousVersions();
 }
 
 void PGMImage::rotate(std::string direction) {

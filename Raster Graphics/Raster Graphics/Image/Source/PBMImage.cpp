@@ -22,8 +22,6 @@ void PBMImage::writeToFile(std::ofstream& file) {
 	writeMagicNumberToFile(file);
 	writeRowsAndColsToFile(file);
 	m_pixels.writeToFile(file);
-
-	clearPreviousVersions();
 }
 
 void PBMImage::rotate(std::string direction) {
