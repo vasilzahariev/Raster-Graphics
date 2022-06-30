@@ -26,6 +26,8 @@ void PPMImage::writeToFile(std::ofstream& file) {
 	writeRowsAndColsToFile(file);
 	writeMaxColorValue(file);
 	m_pixels.writeToFile(file);
+
+	clearPreviousVersions();
 }
 
 void PPMImage::rotate(std::string direction) {
